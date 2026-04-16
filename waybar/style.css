@@ -1,0 +1,161 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: #282828;
+    border-radius: 0px;
+}
+
+window#waybar.hidden {
+    opacity: 0.0;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+#workspaces button {
+    padding: 0px 8px 0px 3px;
+	margin: 0px 0px 1px 2px;
+    font-size: 10px;
+    border-radius: 5px;
+    color: #bababa;
+}
+
+#workspaces button:hover {
+  background: none;
+  color: #ebdbb2;
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+
+#workspaces button.active {
+    color: #ebdbb2;
+    font-weight: 600;
+}
+
+#workspaces button.urgent {
+  color: #bababa;
+}
+
+#workspaces {
+    margin: 0px 0px 0px 0px;
+    border-radius: 5px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 5;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#window {
+	color: #ebdbb2;
+}
+
+#clock {
+    color: #ebdbb2;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: 500;
+    padding: 0px 10px 0px 5px;
+    border-radius: 5px;
+}
+
+#battery {
+    color: #ebdbb2;
+    margin-right: 5px;
+    padding: 0px 0px 0px 0px;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#battery.good {
+    color: #f9e2af;
+}
+
+#battery.critical {
+    color: #f38ba8;
+}
+
+#cava {
+    color: #ebdbb2;
+    background-color: #0f0f0f;
+    margin: 4px 0px 4px 5px;
+    border-radius: 5px;
+    padding: 0px 10px 0px 10px;
+}
+
+#network {
+    color: #ebdbb2;
+    background-color: #0f0f0f;
+    margin: 4px 0px 3px 2px;
+	font-size: 16px;
+    border-radius: 5px 0px 0px 5px;
+    padding: 0px 9px 0px 13px;
+    font-weight: bold;
+}
+
+#pulseaudio {
+    color: #ebdbb2;
+	font-size: 16px;
+	margin: 1px 6px 0px 5px;
+}
+
+#custom-arrow {
+    color: alpha(#ebdbb2, 0.3);
+    padding: 0px 5px 0px 5px;
+    margin-right: 0px;
+}
+
+#custom-power {
+    color: #ebdbb2;
+    background-color: #171926;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 0px 5px 0px 0px;
+    padding: 0px 10px 0px 10px;
+}
+
+#custom-seperator {
+	color: #ebdbb2;
+}
+
+#custom-notification {
+    color: #ebdbb2;
+    background-color: #171926;
+    font-size: 13px;
+    margin: 4px 0px 5px 0px;
+    padding: 0px 4px 0px 4px;
+}
+
+#popuptray {
+    border-radius: 5px 0px 0px 5px;
+}
+
+#tray {
+    padding: 0px 5px 0px 5px;
+}
+
+#power-profiles-daemon {
+    color: #ebdbb2;
+    margin: 0px 13px 0px 2px;
+}
+
+#power-profiles-daemon.performance {
+    margin: 0px 8px 0px 2px;
+}
+
+#power-profiles-daemon.power-saver {
+    margin: 0px 10px 0px 2px;
+}

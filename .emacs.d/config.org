@@ -1,0 +1,70 @@
+* Packages
+#+begin_src emacs-lisp
+  (package-initialize)
+
+  (use-package vertico
+    :ensure t
+    :init
+    (vertico-mode))
+
+  (use-package gruvbox-theme
+    :ensure t)
+
+  (use-package multiple-cursors
+    :ensure t)
+
+  (use-package magit
+    :ensure t)
+
+  (use-package orderless
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+#+end_src
+* Setq Settings
+#+begin_src emacs-lisp
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (setq create-lockfiles nil)
+  (setq display-line-numbers-type 'relative)
+
+  (setq org-startup-folded t)
+  (setq desktop-path '("~/.emacs.d/"))
+  (setq desktop-dirname "~/.emacs.d/")
+  (setq desktop-base-file-name ".emacs.desktop")
+  (setq desktop-load-locked-desktop t)
+  (setq inhibit-startup-message t)
+  (setq ring-bell-function 'ignore)
+  (setq org-hide-emphasis-markers t)
+
+  (setq-default indent-tabs-mode t tab-width 4)
+  (setq-default c-basic-offset 4)
+#+end_src
+* Basic Settings
+#+begin_src emacs-lisp
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (desktop-save-mode 1)
+  (electric-pair-mode -1)
+  (global-display-line-numbers-mode 1)
+#+end_src
+* Keybindings
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-=") 'indent-region)
+  (global-set-key (kbd "C-a") 'back-to-indentation)
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  (global-set-key (kbd "C-.") 'duplicate-line)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
+  (global-set-key (kbd "C-M-=") 'recompile)
+  (global-unset-key (kbd "C-x f"))
+  (global-unset-key (kbd "C-x C-n"))
+#+end_src
+* Appearance
+#+begin_src emacs-lisp
+  (set-frame-font "JetBrainsMono Nerd Font 16" nil t)
+  (load-theme 'gruvbox-dark-hard t)
+#+end_src

@@ -1,0 +1,13 @@
+[Unit]
+Description=Turns on and off powerprofilesctl profiles
+
+[Service]
+ExecStart=/home/me/.config/CustomScript/PowerMode.sh
+Restart=always
+RestartSec=2
+
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target

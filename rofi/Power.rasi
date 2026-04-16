@@ -1,0 +1,11 @@
+* {
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+@theme "gruvbox-dark-hard"
+
+window {
+    width:  20%;
+	height: 16%;
+}
+

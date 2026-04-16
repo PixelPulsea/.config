@@ -1,0 +1,22 @@
+@theme "gruvbox-dark-hard"
+
+configuration {
+	font: "JetBrainsMono Nerd Font Regular 12";
+
+	icon-theme: "Papirus";
+	show-icons: true;
+}
+
+listview {
+	fixed-height: false;
+	lines: 10;
+}
+
+window {
+	width: 30%;
+}
+
+mainbox {
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}

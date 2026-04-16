@@ -1,0 +1,186 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    //"height": 34, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules (4px)
+    "margin-top": 0,
+	"height": 27,
+    //"width": 1585,
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+    ],
+    "modules-right": [
+        "tray",
+		"custom/seperator",
+        "battery",
+	"custom/seperator",
+	"clock"
+    ],
+    // Modules configuration
+     "hyprland/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "format": "{icon}",
+         "format-icons": {
+            "1": "Edit",
+            "2": "Web",
+            "3": "Extra",
+            "4": "4",
+            "5": "5",
+            //"urgent": "",
+            //"focused": "",
+            //"default": ""
+	 },
+	 "persistent-workspaces": {
+		"*": 3
+     }
+    },
+
+    "tray": {
+        "spacing": 7,
+        "icon-size": 16
+    },
+
+    "power-profiles-daemon": {
+	    "format": "{icon}",
+	    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+	    "tooltip": true,
+	    "format-icons": {
+		    "default": "",
+		    "performance": "",
+		    "balanced": "",
+		    "power-saver": ""
+	    }
+    },
+    
+    "group/popuptray": {
+        "orientation": "horizontal",
+        "drawer": {
+        "transition-duration": 500,
+        "children-class": "not-power",
+        "click-to-reveal": false,
+        "transition-left-to-right": true
+        },
+        "modules": [
+            "custom/arrow",
+            "tray"
+        ]
+    },
+
+    "cava": {
+        // "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+        "framerate": 60,
+        "autosens": 1,
+        //"sensitivity": 20,
+        "bars": 16,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 20000,
+        "hide_on_silence": false,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": false,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.20,
+        "input_delay": 1,
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ]
+    },
+
+    "clock": {
+        // "timezone": "America/New_York",
+	"format": "{:%I:%M %p}",
+	"tooltip": true,
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode"          : "month",
+		"mode-mon-col"  : 3,
+		"weeks-pos"     : "right",
+		"format": {
+			"months":     "<span color='#ffead3'><b>{}</b></span>",
+			"days":       "<span color='#ffffff'><b>{}</b></span>",
+			"weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+			"today":      "<span color='#ff6699'><b>{}</b></span>"
+	        }
+	    }
+    },
+
+    "battery": {
+        "states": {
+            //"good": 80,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": " {icon} {capacity}%",
+        "format-full": " {icon} {capacity}%",
+        "format-charging": " 󰂄 {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "tooltip-format": "{timeTo}: {cycles} Cycles",
+	    "interval": 1,
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format": "{icon}",
+        "format-linked": "",
+        "tooltip-format": "{essid}",
+	    "interval": 1,
+        "format-disconnected": "󰤭",
+	    "on-click": "alacritty -e nmtui",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"] 
+    },
+
+    "custom/": {
+        "exec": "awk '{printf \"%.2f W\\n\", $1/1000000}' /sys/class/power_supply/BAT0/power_now", 
+        "interval": 1,
+        "format": "{}",
+        "tooltip": false
+    },
+
+    "custom/notification": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "swaync-client -t"
+    },
+
+    "custom/seperator": {
+        "format": "||",
+        "tooltip": false
+    },
+
+    "custom/arrow": {
+        "format": "",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "format-bluetooth-muted": "󰖁",
+        "format-muted": "󰖁",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+	    "scroll-step": 0.7,
+	    "max-volume": 150,
+        "reverse-scrolling": true,
+        "format-icons": {
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol",
+	    "tooltip-format": "Volume: {volume}%"
+    }
+
+}
