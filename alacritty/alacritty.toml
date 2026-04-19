@@ -10,7 +10,7 @@ foreground = "#ebdbb2"
 background = "#282828"
 
 [window]
-opacity = 1.0
+opacity = 0.9
 dynamic_padding = true
 padding = { x = 10, y = 3 }
 
