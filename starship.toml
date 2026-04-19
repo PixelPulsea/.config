@@ -1,0 +1,6 @@
+add_newline = false
+
+format = '$directory$package$rust$python$lua$nix_shell$git_status$git_branch$git_commit$git_state [➜](bold green) '
+
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
