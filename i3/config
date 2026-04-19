@@ -6,6 +6,7 @@ font pango:monospace 8
 # autostart
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/ISSEarth.png --nofork
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:31AD Touchpad" "libinput Natural Scrolling Enabled" 1
 exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:31AD Touchpad" "libinput Tapping Enabled" 1
 exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
@@ -15,13 +16,14 @@ exec --no-startup-id parcellite
 exec --no-startup-id picom
 exec --no-startup-id flatpak run org.mozilla.firefox
 exec --no-startup-id emacs
+exec --no-startup-id i3-sensible-terminal
 exec --no-startup-id flatpak run com.dropbox.Client start dropboxd
 
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -47,12 +49,6 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus left
 
-# move focused window
-bindsym $mod+Shift+h focus right
-bindsym $mod+Shift+j focus down
-bindsym $mod+Shift+k focus up
-bindsym $mod+Shift+l focus left
-
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -73,6 +69,10 @@ bindsym $mod+t floating toggle
 bindsym $mod+e exec nemo
 bindsym $mod+b exec flatpak run org.mozilla.firefox
 bindsym $mod+Shift+S exec flameshot gui
+bindsym $mod+Shift+l exec i3lock -i ~/Pictures/ISSEarth.png
+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
 
 workspace_layout tabbed
 title_align center
