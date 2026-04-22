@@ -2,11 +2,6 @@
 #+begin_src emacs-lisp
   (package-initialize)
 
-  (use-package vertico
-    :ensure t
-    :init
-    (vertico-mode))
-
   (use-package gruvbox-theme
     :ensure t)
 
@@ -43,6 +38,7 @@
 #+end_src
 * Basic Settings
 #+begin_src emacs-lisp
+  (ido-mode 1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
