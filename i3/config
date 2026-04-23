@@ -5,11 +5,11 @@ font pango:monospace 8
 
 # autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id nm-applet
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/ISSEarth.png --nofork
 exec --no-startup-id feh --bg-fill ~/Pictures/SpaceMoon.jpg
 exec --no-startup-id flameshot
 exec --no-startup-id picom
+exec --no-startup-id copyq
 exec --no-startup-id flatpak run org.mozilla.firefox
 exec --no-startup-id emacs
 exec --no-startup-id i3-sensible-terminal
