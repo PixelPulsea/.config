@@ -7,11 +7,7 @@ font pango:monospace 8
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -i ~/Pictures/ISSEarth.png --nofork
-exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:31AD Touchpad" "libinput Natural Scrolling Enabled" 1
-exec --no-startup-id xinput set-prop "ELAN06FA:00 04F3:31AD Touchpad" "libinput Tapping Enabled" 1
-exec --no-startup-id /usr/bin/setxkbmap -option "ctrl:nocaps"
 exec --no-startup-id feh --bg-fill ~/Pictures/SpaceMoon.jpg
-exec --no-startup-id xinput set-prop 8 "libinput Accel Profile Enabled" 0, 1, 0
 exec --no-startup-id flameshot
 exec --no-startup-id picom
 exec --no-startup-id flatpak run org.mozilla.firefox
@@ -85,8 +81,7 @@ assign [class="Emacs"] $ws1
 for_window [class="copyq"] floating enable, resize set 400 500, move position center
 
 # border, background, text, indicator child_border
-client.focused          #282828 #282828 #ebdbb2 #2e9ef4 #282828
-client.focused_inactive #1d2021 #1d2021 #bababa #2e9ef4 #282828
+client.focused          #000000 #000000 #ffffff #000000 #000000
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

@@ -1,4 +1,4 @@
-@theme "gruvbox-dark-hard"
+@theme "Arc-Dark"
 
 configuration {
 	font: "JetBrainsMono Nerd Font Regular 12";

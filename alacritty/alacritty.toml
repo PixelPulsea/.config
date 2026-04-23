@@ -6,8 +6,8 @@ family = "CodeNewRoman Nerd Font"
 style = "Regular"
 
 [colors.primary]
-foreground = "#ebdbb2"
-background = "#282828"
+foreground = "#c4c4c4"
+background = "#000000"
 
 [window]
 opacity = 0.9
