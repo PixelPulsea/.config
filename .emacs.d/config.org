@@ -1,8 +1,10 @@
 * Packages
 #+begin_src emacs-lisp
   (package-initialize)
+  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-  (use-package gruvbox-theme
+  (use-package gruber-darker-theme
     :ensure t)
 
   (use-package multiple-cursors
@@ -41,9 +43,7 @@
   (ido-mode 1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
-  (scroll-bar-mode -1)
   (desktop-save-mode 1)
-  (electric-pair-mode -1)
   (global-display-line-numbers-mode 1)
 #+end_src
 * Keybindings
@@ -61,6 +61,6 @@
 #+end_src
 * Appearance
 #+begin_src emacs-lisp
-  (set-frame-font "JetBrainsMono Nerd Font 16" nil t)
-  (load-theme 'gruvbox-dark-hard t)
+  (set-frame-font "Iosevka Nerd Font 22" nil t)
+  (load-theme 'gruber-darker t)
 #+end_src
