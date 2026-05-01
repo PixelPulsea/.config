@@ -5,5 +5,5 @@ echo "Enter the name of the Github Repo:"
 read NAME
 
 git clone git@github.com:$USERNAME/$NAME.git
-cd "$NAME"
+cd $NAME
 direnv allow

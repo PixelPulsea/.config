@@ -69,6 +69,9 @@ bindsym $mod+Shift+e exec rofimoji
 
 bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 workspace_layout tabbed
 title_align center
