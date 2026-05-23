@@ -12,7 +12,7 @@ exec --no-startup-id picom
 exec --no-startup-id copyq
 exec --no-startup-id flatpak run org.mozilla.firefox
 exec --no-startup-id emacs
-exec --no-startup-id flatpak run com.dropbox.Client start dropboxd
+exec --no-startup-id ~/.dropbox-dist/dropboxd
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

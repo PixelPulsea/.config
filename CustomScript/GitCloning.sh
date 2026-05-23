@@ -29,6 +29,18 @@ elif [ $CUSTOM == "n" ]; then
 
 		if [ $finalconf == "y" ]; then
 			makepkg -sic
+			
+			echo "=============================================="
+			echo "Remove the source folder? [y/n]"
+			read afterinstall
+
+			if [ $afterinstall == "y" ]; then
+				cd ..
+				rm -rf $URL/
+				echo -e "\e[34mInstall Completed!\e[0m"
+			else
+				echo -e "\e[34mInstall Completed!\e[0m"
+			fi
 		else
 			echo "Install Aborted"
 		fi
