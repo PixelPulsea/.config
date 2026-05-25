@@ -5,7 +5,7 @@ USERNAME="PixelPulsea"
 echo "Is it from your own repos? [y/n]"
 read CUSTOM
 
-if [[ $CUSTOM == "y" ]]; then
+if [[ $CUSTOM == "y" || $CUSTOM == "" || $CUSTOM == " " ]]; then
 	echo "Enter the name of the Github Repo"
 	read NAME
 	git clone git@github.com:$USERNAME/$NAME.git
@@ -20,14 +20,14 @@ elif [[ $CUSTOM == "n" ]]; then
 	echo "Do you want to install this? [y/n]"
 	read confirmation
 
-	if [[ $confirmation == "y" ]]; then
+	if [[ $confirmation == "y" || $confirmation == "" || $confirmation == " " ]]; then
 		echo "===================PKGBUILD==================="
 		cat PKGBUILD
 		echo "=============================================="
 		echo "Final confirmation. Do you want to install this? [y/n]"
 		read finalconf
 
-		if [[ $finalconf == "y" ]]; then
+		if [[ $finalconf == "y" || $finalconf == "" || $finalconf == " " ]]; then
 			makepkg -sic
 			
 			echo "=============================================="
