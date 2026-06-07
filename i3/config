@@ -62,7 +62,7 @@ bindsym $mod+t floating toggle
 # custom settings
 bindsym $mod+e exec nautilus --new-window
 bindsym $mod+v exec copyq show
-bindsym $mod+b exec flatpak run org.mozilla.firefox
+bindsym $mod+b exec brave-origin-beta
 bindsym $mod+Shift+S exec flameshot gui
 bindsym $mod+Shift+l exec i3lock -i ~/Pictures/ISSEarth.png
 bindsym $mod+Shift+e exec rofimoji
