@@ -8,7 +8,9 @@ read CUSTOM
 if [[ $CUSTOM == "y" || $CUSTOM == "" || $CUSTOM == " " ]]; then
 	echo "Enter the name of the Github Repo"
 	read NAME
-	git clone git@github.com:$USERNAME/$NAME.git
+    echo "Enter the branch of your repo"
+	read BRANCH
+	git clone --branch $BRANCH git@github.com:$USERNAME/$NAME.git
 	cd $NAME
 	direnv allow
 elif [[ $CUSTOM == "n" ]]; then
