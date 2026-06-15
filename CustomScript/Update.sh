@@ -1,10 +1,17 @@
-sudo pacman -Syyu --noconfirm
+echo "If NixOS write nix, if Arch write arch"
+read distro
 
-journalctl --vacuum-time=365d
+if [[ $distro == "arch" ]]; then
+	sudo pacman -Syyu --noconfirm
 
-sudo pacman -Rs $(pacman -Qdtq) --noconfirm
-sudo pacman -Scc --noconfirm
-sudo rm -rf /var/tmp/*
+	journalctl --vacuum-time=365d
 
-flatpak update --noninteractive
-flatpak remove --unused -y
+	sudo pacman -Rs $(pacman -Qdtq) --noconfirm
+	sudo pacman -Scc --noconfirm
+	sudo rm -rf /var/tmp/*
+
+	flatpak update --noninteractive
+	flatpak remove --unused -y
+elif [[ $distro == "nix" ]]; then
+	sudo nixos-rebuild switch --flake ~/.nix#Snixxy
+fi
