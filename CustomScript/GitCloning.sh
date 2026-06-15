@@ -14,12 +14,12 @@ if [[ $CUSTOM == "y" || $CUSTOM == "" || $CUSTOM == " " ]]; then
 	cd $NAME
 	direnv allow
 elif [[ $CUSTOM == "n" ]]; then
-	echo "Enter the name of the repo from the AUR"
+	echo "Enter the name of the repo"
 	read URL
 	git clone https://aur.archlinux.org/$URL.git
 
 	cd $URL
-	echo "Do you want to install this? [y/n]"
+	echo "Do you want to install this? (answer 'n' if you're not on arch) [y/n]"
 	read confirmation
 
 	if [[ $confirmation == "y" || $confirmation == "" || $confirmation == " " ]]; then
