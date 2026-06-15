@@ -19,7 +19,7 @@ elif [[ $CUSTOM == "n" ]]; then
 	git clone https://aur.archlinux.org/$URL.git
 
 	cd $URL
-	echo "Do you want to install this? [y/n]"
+    echo "Do you want to install this? (answer 'n' if you're not on arch) [y/n]"
 	read confirmation
 
 	if [[ $confirmation == "y" || $confirmation == "" || $confirmation == " " ]]; then
