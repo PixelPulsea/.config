@@ -13,5 +13,5 @@ if [[ $distro == "arch" ]]; then
 	flatpak update --noninteractive
 	flatpak remove --unused -y
 elif [[ $distro == "nix" ]]; then
-	sudo nixos-rebuild switch --flake ~/.nix#Snixxy
+	sudo nixos-rebuild switch --flake ~/.nix#Snixxy --impure
 fi
