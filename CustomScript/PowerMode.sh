@@ -9,10 +9,12 @@ while true; do
 		PREV="$STAT"
 		if [[ "$STAT" == "1" ]]; then
 			notify-send "Charging: Performance Mode Enabled"
+			notify-desktop "Charging: Performance Mode Enabled"
 			powerprofilesctl set performance
 			brightnessctl s 95%
 		else
 			notify-send "Discharging: Power Saver Mode Enabled"
+			notify-desktop "Discharging: Power Saver Mode Enabled"
 			powerprofilesctl set power-saver
 			brightnessctl s 50%
 		fi

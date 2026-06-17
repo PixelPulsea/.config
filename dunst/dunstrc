@@ -7,14 +7,14 @@
     separator_height = 10
 
 [urgency_low]
-    background = "#282828"
-    foreground = "#ebdbb2"
+    background = "#3D3D3D"
+    foreground = "#ffffff"
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#ebdbb2"
+    background = "#3D3D3D"
+    foreground = "#ffffff"
 
 [urgency_critical]
-    background = "#FF0000"
+    background = "#000000"
     foreground = "#ebdbb2"
     timeout = 0
