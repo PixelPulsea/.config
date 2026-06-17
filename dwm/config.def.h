@@ -33,8 +33,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Brave",     NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Emacs",     NULL,       NULL,       1 << 0,       0,           -1 },
 };
 
 /* layout(s) */
@@ -46,9 +46,8 @@ static const int refreshrate = 120;  /* refresh rate (per second) for client mov
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "stacked",      monocle },
-	{ "master",      tile }, 
-	{ "float",      NULL },
+	{ "| stacked",      monocle },
+	{ "| master",      tile }, 
 };
 
 /* key definitions */
@@ -79,18 +78,12 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_c,      killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_w,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-
+	{ MODKEY|ShiftMask,             XK_w,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,      togglefloating, {0} },
+	
+	//Custom binds & Function key binds
+	{ MODKEY,        XK_b,         spawn,    SHCMD("brave") },
 	{ 0, XF86XK_AudioRaiseVolume,  spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+") },
 	{ 0, XF86XK_AudioLowerVolume,  spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-") },
 	{ 0, XF86XK_AudioMute,         spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
