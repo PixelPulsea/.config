@@ -25,6 +25,7 @@
   (setq auto-save-default nil)
   (setq create-lockfiles nil)
   (setq display-line-numbers-type 'relative)
+  (setq frame-resize-pixelwise t)
 
   (setq org-startup-folded t)
   (setq desktop-path '("~/.emacs.d/"))
