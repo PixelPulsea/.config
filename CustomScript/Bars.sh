@@ -1,10 +1,11 @@
 #!/bin/sh
 
+user=$(whoami)
+
 while true; do
 	#main variables
 	bat_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
 	bat_status=$(cat /sys/class/power_supply/BAT0/status)
-	user=$(whoami)
 	time=$(date "+%H:%M %P")
 
 	ram_total=$(grep 'MemTotal' /proc/meminfo | awk '{print $2}')
