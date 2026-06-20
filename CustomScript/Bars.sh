@@ -6,7 +6,7 @@ while true; do
 	#main variables
 	bat_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
 	bat_status=$(cat /sys/class/power_supply/BAT0/status)
-	time=$(date "+%H:%M %P")
+	time=$(date "+%H:%M")
 
 	ram_total=$(grep 'MemTotal' /proc/meminfo | awk '{print $2}')
 	ram_free=$(grep 'MemAvailable' /proc/meminfo | awk '{print $2}')
