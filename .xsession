@@ -3,10 +3,10 @@
 
 (exec /home/achka/.config/CustomScript/Bars.sh) &
 (exec /home/achka/.config/CustomScript/PowerMode.sh) &
-(exec feh --bg-fill ~/Pictures/SpaceMoon.png) &
+(exec feh --bg-fill /home/achka/Pictures/rock.jpg) &
+copyq --start-server &
 picom &
 emacs &
-copyq &
 brave &
 
 exec dwm
