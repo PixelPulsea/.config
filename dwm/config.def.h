@@ -94,6 +94,9 @@ static const Key keys[] = {
 	{ 0, XF86XK_AudioMute,         spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") },
 	{ 0, XF86XK_MonBrightnessUp,   spawn,    SHCMD("brightnessctl set 5%+") },
 	{ 0, XF86XK_MonBrightnessDown, spawn,    SHCMD("brightnessctl set 5%-") },
+	{ 0, XF86XK_AudioPlay,            spawn,    SHCMD("playerctl play-pause")  },
+	{ 0, XF86XK_AudioNext,            spawn,    SHCMD("playerctl next")        },
+	{ 0, XF86XK_AudioPrev,            spawn,    SHCMD("playerctl previous")    },
 	
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
