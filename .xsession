@@ -4,6 +4,8 @@
 (exec /home/achka/.config/CustomScript/Bars.sh) &
 (exec /home/achka/.config/CustomScript/PowerMode.sh) &
 (exec feh --bg-fill /home/achka/Pictures/rock.jpg) &
+xset dpms 180 &
+xss-lock -- slock &
 copyq --start-server &
 dropbox &
 picom &
