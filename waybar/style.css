@@ -1,11 +1,11 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: "JetBrainsMono Nerd Font";
-    font-size: 13px;
+    font-size: 14px;
 }
 
 window#waybar {
-    background-color: #282828;
+    background-color: #000000;
     border-radius: 0px;
 }
 
@@ -31,14 +31,14 @@ button {
 
 #workspaces button:hover {
   background: none;
-  color: #ebdbb2;
+  color: #ffffff;
   box-shadow: none;
   border: none;
   outline: none;
 }
 
 #workspaces button.active {
-    color: #ebdbb2;
+    color: #ffffff;
     font-weight: 600;
 }
 
@@ -62,11 +62,11 @@ button {
 }
 
 #window {
-	color: #ebdbb2;
+	color: #ffffff;
 }
 
 #clock {
-    color: #ebdbb2;
+    color: #ffffff;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: 500;
     padding: 0px 10px 0px 5px;
@@ -74,7 +74,7 @@ button {
 }
 
 #battery {
-    color: #ebdbb2;
+    color: #ffffff;
     margin-right: 5px;
     padding: 0px 0px 0px 0px;
     border-radius: 0px 5px 5px 0px;
@@ -89,7 +89,7 @@ button {
 }
 
 #cava {
-    color: #ebdbb2;
+    color: #ffffff;
     background-color: #0f0f0f;
     margin: 4px 0px 4px 5px;
     border-radius: 5px;
@@ -97,7 +97,7 @@ button {
 }
 
 #network {
-    color: #ebdbb2;
+    color: #ffffff;
     background-color: #0f0f0f;
     margin: 4px 0px 3px 2px;
 	font-size: 16px;
@@ -107,19 +107,19 @@ button {
 }
 
 #pulseaudio {
-    color: #ebdbb2;
+    color: #ffffff;
 	font-size: 16px;
 	margin: 1px 6px 0px 5px;
 }
 
 #custom-arrow {
-    color: alpha(#ebdbb2, 0.3);
+    color: alpha(#ffffff, 0.3);
     padding: 0px 5px 0px 5px;
     margin-right: 0px;
 }
 
 #custom-power {
-    color: #ebdbb2;
+    color: #ffffff;
     background-color: #171926;
     border-radius: 5px;
     font-weight: bold;
@@ -128,11 +128,11 @@ button {
 }
 
 #custom-seperator {
-	color: #ebdbb2;
+	color: #ffffff;
 }
 
 #custom-notification {
-    color: #ebdbb2;
+    color: #ffffff;
     background-color: #171926;
     font-size: 13px;
     margin: 4px 0px 5px 0px;
@@ -148,7 +148,7 @@ button {
 }
 
 #power-profiles-daemon {
-    color: #ebdbb2;
+    color: #ffffff;
     margin: 0px 13px 0px 2px;
 }
 
