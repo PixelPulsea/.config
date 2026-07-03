@@ -2,7 +2,7 @@
 #+begin_src emacs-lisp
   (package-initialize)
   (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
   (use-package gruber-darker-theme
     :ensure t)
@@ -54,7 +54,6 @@
   (global-set-key (kbd "C-.") 'duplicate-line)
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
   (global-set-key (kbd "C-M-=") 'recompile)
   (global-unset-key (kbd "C-x f"))
   (global-unset-key (kbd "C-x C-n"))
