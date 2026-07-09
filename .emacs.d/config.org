@@ -1,23 +1,27 @@
 * Packages
 #+begin_src emacs-lisp
-  (package-initialize)
-  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+    (package-initialize)
+    (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
-  (use-package gruber-darker-theme
-    :ensure t)
+    (use-package gruber-darker-theme
+      :ensure t)
 
-  (use-package multiple-cursors
-    :ensure t)
+    (use-package multiple-cursors
+      :ensure t)
 
-  (use-package magit
-    :ensure t)
+    (use-package magit
+      :ensure t)
 
-  (use-package orderless
-    :ensure t
-    :custom
-    (completion-styles '(orderless basic))
-    (completion-category-overrides '((file (styles basic partial-completion)))))
+    (use-package direnv
+      :ensure t
+  	:config (direnv-mode))
+
+    (use-package orderless
+      :ensure t
+      :custom
+      (completion-styles '(orderless basic))
+      (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
 * Setq Settings
 #+begin_src emacs-lisp
