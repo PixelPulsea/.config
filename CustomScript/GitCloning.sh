@@ -47,7 +47,7 @@ elif [[ $CUSTOM == "n" ]]; then
 		read -p "Which branch? [press Enter if main]: " branch
 
 		if [[ $project == "y" ]]; then
-			git clone git@github.com:$USER/$URL.git
+			git clone --branch $branch git@github.com:$USER/$URL.git
 		elif [[ $project == "n" ]]; then
 			git clone --branch $branch https://github.com/$USER/$URL
 			echo -e "\e[32mDone!\e[0m"
