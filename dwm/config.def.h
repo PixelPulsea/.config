@@ -15,13 +15,13 @@ static const char *fonts[]          = { "monospace:size=10" };
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#ffffff";
 static const char col_gray3[]       = "#ffffff";
-static const char col_gray4[]       = "#ffffff";
+static const char col_gray4[]       = "#bcbcbc";
 static const char col_gray5[]       = "#3D3D3D";
 static const char col_color[]       = "#ffffff";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_gray5,  col_color  },
+	[SchemeSel]  = { col_gray4, col_gray1,  col_color  },
 };
 
 /* tagging */
@@ -80,6 +80,7 @@ static const Key keys[] = {
 	{ MODKEY,                  XK_e,         spawn,    SHCMD("thunar") },
 	{ MODKEY,                  XK_v,         spawn,    SHCMD("copyq show") },
 	{ MODKEY|ShiftMask,        XK_s,         spawn,    SHCMD("flameshot gui") },
+	{ MODKEY|ShiftMask,        XK_l,         spawn,    SHCMD("i3lock") },
 	{ MODKEY|ShiftMask,        XK_e,         spawn,    SHCMD("rofimoji") },
 	{ MODKEY,                  XK_r,         spawn,    SHCMD("rofi -show drun") },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,    spawn,    SHCMD("~/.config/rofi/scripts/power.sh") },
@@ -107,15 +108,7 @@ static const Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 

@@ -25,7 +25,7 @@ case "$chosen" in
         ;;
     " Lock")
         # Replace with your lock command
-        hyprlock
+        i3lock
         # betterlockscreen -l dim
         ;;
 esac
