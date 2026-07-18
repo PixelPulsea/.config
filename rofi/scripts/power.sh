@@ -19,7 +19,7 @@ case "$chosen" in
         ;;
     " Logout")
         # Replace 'your_session' with your DE/WM logout command
-        hyprctl dispatch exit
+		pkill dwm
         # openbox --exit # for Openbox
         # i3-msg exit # for i3
         ;;

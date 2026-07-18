@@ -1,5 +1,4 @@
-echo "If NixOS write nix, if Arch write arch"
-read distro
+read -p "If NixOS write nix, if Arch write arch: " distro
 
 if [[ $distro == "arch" ]]; then
 	sudo pacman -Syyu --noconfirm
