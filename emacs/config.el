@@ -1,0 +1,56 @@
+(package-initialize)
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(use-package gruber-darker-theme
+  :ensure t)
+
+(use-package multiple-cursors
+  :ensure t)
+
+(use-package magit
+  :ensure t)
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+(setq display-line-numbers-type 'relative)
+
+(setq org-startup-folded t)
+(setq desktop-path '("~/.emacs.d/"))
+(setq desktop-dirname "~/.emacs.d/")
+(setq desktop-base-file-name ".emacs.desktop")
+(setq desktop-load-locked-desktop t)
+(setq inhibit-startup-message t)
+(setq ring-bell-function 'ignore)
+(setq org-hide-emphasis-markers t)
+(setq frame-resize-pixelwise t)
+
+(setq-default indent-tabs-mode t tab-width 4)
+(setq-default c-basic-offset 4)
+
+(ido-mode 1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(desktop-save-mode 1)
+(global-display-line-numbers-mode 1)
+
+(global-set-key (kbd "C-=") 'indent-region)
+(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-.") 'duplicate-line)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-M-=") 'recompile)
+(global-unset-key (kbd "C-x f"))
+(global-unset-key (kbd "C-x C-n"))
+
+(set-frame-font "Iosevka Nerd Font 22" nil t)
+(load-theme 'gruber-darker t)
