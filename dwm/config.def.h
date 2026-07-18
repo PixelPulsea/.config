@@ -26,7 +26,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "Edit", "Web", "Extra", "4", "5" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "Media" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -86,6 +86,7 @@ static const Key keys[] = {
 	{ MODKEY,                  XK_e,         spawn,    SHCMD("thunar") },
 	{ MODKEY,                  XK_v,         spawn,    SHCMD("copyq show") },
 	{ MODKEY|ShiftMask,        XK_s,         spawn,    SHCMD("flameshot gui") },
+	{ MODKEY|ShiftMask,        XK_e,         spawn,    SHCMD("rofimoji") },
 	{ MODKEY,                  XK_r,         spawn,    SHCMD("rofi -show drun") },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,    spawn,    SHCMD("~/.config/rofi/scripts/power.sh") },
 	{ 0, XF86XK_AudioRaiseVolume,  spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+") },
