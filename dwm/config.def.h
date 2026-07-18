@@ -10,9 +10,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 30;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#ffffff";
 static const char col_gray3[]       = "#ffffff";
@@ -29,14 +28,10 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "Media" };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Brave",     NULL,       NULL,       1 << 1,       0,           -1 },
-	{ "Emacs",     NULL,       NULL,       1 << 0,       0,           -1 },
-	{ "copyq",     NULL,       NULL,       -1,           1,           -1 },
+	{ "Brave",     NULL,       NULL,       0,           0,           -1 },
+	{ "Emacs",     NULL,       NULL,       0,           0,           -1 },
+	{ "copyq",     NULL,       NULL,       0,           1,           -1 },
 };
 
 /* layout(s) */
@@ -72,8 +67,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_q,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_i,      zoom,           {0} },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_c,      killclient,     {0} },
