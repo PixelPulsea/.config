@@ -29,10 +29,9 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "Media" };
 
 static const Rule rules[] = {
 	/* class                                 instance    title       tags mask     isfloating   monitor */
-	{ "strawberry",                          NULL,       NULL,       1 << 8,           1,           -1 },
-	{ "org.nicotine_plus.Nicotine",          NULL,       NULL,       1 << 7,           1,           -1 },
-	{ "steam",                               NULL,       NULL,       1 << 6,           1,           -1 },
-	{ "copyq",                               NULL,       NULL,       0,           1,           -1 },
+	{ "org.nicotine_plus.Nicotine",          NULL,       NULL,       1 << 7,           0,           -1 },
+	{ "steam",                               NULL,       NULL,       1 << 6,           0,           -1 },
+	{ "copyq",                               NULL,       NULL,       0,                1,           -1 },
 };
 
 /* layout(s) */
