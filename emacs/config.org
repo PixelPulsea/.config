@@ -7,6 +7,11 @@
   (use-package gruber-darker-theme
     :ensure t)
 
+  (use-package smex
+    :ensure t
+    :init (smex-initialize)
+    :bind ("M-x" . smex))
+
   (use-package multiple-cursors
     :ensure t)
 
@@ -71,7 +76,7 @@
 * Basic Settings
 #+begin_src emacs-lisp
   (ido-mode 1)
-  (ido-everywhere 1 )
+  (ido-everywhere 1)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
