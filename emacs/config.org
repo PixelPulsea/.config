@@ -42,9 +42,14 @@
 
   (setq-default indent-tabs-mode t tab-width 4)
   (setq-default c-basic-offset 4)
+#+end_src
+* Tree-sitter
+#+begin_src emacs-lisp
   (setq-default typescript-ts-mode-indent-offset 4)
   (setq-default c-ts-mode-indent-offset 4)
-#+end_src
+
+  (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
+  #+end_src
 * Basic Settings
 #+begin_src emacs-lisp
   (ido-mode 1)
@@ -68,6 +73,6 @@
 #+end_src
 * Appearance
 #+begin_src emacs-lisp
-  (set-frame-font "Iosevka Nerd Font 22" nil t)
+  (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
   (load-theme 'gruber-darker t)
 #+end_src
