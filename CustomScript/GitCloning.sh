@@ -43,8 +43,11 @@ elif [[ $CUSTOM == "n" ]]; then
 	elif [[ $SOURCE == "n" ]]; then
 		read -p "Enter the username: " USER
 		read -p "Clone with commit/push? [y/n]: " project
-	    branch="main"
 		read -p "Which branch? [press Enter if main]: " branch
+
+		if [[ $branch == "" ]]; then
+			branch="main"
+		fi
 
 		if [[ $project == "y" ]]; then
 			git clone --branch $branch git@github.com:$USER/$URL.git
