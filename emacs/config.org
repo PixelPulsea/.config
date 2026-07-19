@@ -62,10 +62,16 @@
   (defun shrink-right ()
     (interactive)
     (shrink-window-horizontally 10))
+
+  (defun update-backend ()
+    (interactive)
+    (org-babel-tangle)
+    (compile "make -k"))
 #+end_src 
 * Basic Settings
 #+begin_src emacs-lisp
   (ido-mode 1)
+  (ido-everywhere 1 )
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
@@ -81,6 +87,7 @@
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-M-=") 'recompile)
+  (global-set-key (kbd "C-+") 'update-backend)
   (global-set-key (kbd "C-}") 'shrink-left)
   (global-set-key (kbd "C-{") 'shrink-right)
 
