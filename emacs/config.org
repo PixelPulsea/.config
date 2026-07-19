@@ -17,6 +17,9 @@
     :ensure t
     :config (direnv-mode))
 
+  (use-package nix-ts-mode
+    :mode "\\.nix\\'")
+
   (use-package orderless
     :ensure t
     :custom
@@ -50,6 +53,16 @@
 
   (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
   #+end_src
+* Functions
+#+begin_src emacs-lisp
+  (defun shrink-left ()
+    (interactive)
+    (enlarge-window-horizontally 10))
+
+  (defun shrink-right ()
+    (interactive)
+    (shrink-window-horizontally 10))
+#+end_src 
 * Basic Settings
 #+begin_src emacs-lisp
   (ido-mode 1)
@@ -68,6 +81,9 @@
   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
   (global-set-key (kbd "C-M-=") 'recompile)
+  (global-set-key (kbd "C-}") 'shrink-left)
+  (global-set-key (kbd "C-{") 'shrink-right)
+
   (global-unset-key (kbd "C-x f"))
   (global-unset-key (kbd "C-x C-n"))
 #+end_src
