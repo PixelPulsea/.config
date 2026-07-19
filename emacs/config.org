@@ -42,6 +42,8 @@
 
   (setq-default indent-tabs-mode t tab-width 4)
   (setq-default c-basic-offset 4)
+  (setq-default typescript-ts-mode-indent-offset 4)
+  (setq-default c-ts-mode-indent-offset 4)
 #+end_src
 * Basic Settings
 #+begin_src emacs-lisp

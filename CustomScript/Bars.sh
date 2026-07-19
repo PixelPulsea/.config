@@ -1,7 +1,5 @@
 #!/bin/sh
 
-user=$(whoami)
-
 while true; do
 	#main variables
 	bat_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
