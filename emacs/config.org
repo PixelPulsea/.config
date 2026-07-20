@@ -57,6 +57,7 @@
   (setq-default c-ts-mode-indent-offset 4)
 
   (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
+  (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
   #+end_src
 * Functions
 #+begin_src emacs-lisp
