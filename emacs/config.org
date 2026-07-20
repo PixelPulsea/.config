@@ -22,9 +22,6 @@
     :ensure t
     :config (direnv-mode))
 
-  (use-package nix-ts-mode
-    :mode "\\.nix\\'")
-
   (use-package orderless
     :ensure t
     :custom
