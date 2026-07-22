@@ -1,9 +1,24 @@
-* Packages
+*This is my Emacs Settings*
+/everything is neatly organized/
+
+* Basic Settings
+** Defaults
 #+begin_src emacs-lisp
   (package-initialize)
   (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (desktop-save-mode 1)
+  (global-display-line-numbers-mode 1)
+#+end_src
 
+** Packages
+#+begin_src emacs-lisp
   (use-package gruber-darker-theme
     :ensure t)
 
@@ -28,35 +43,23 @@
     (completion-styles '(orderless basic))
     (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
-* Setq Settings
+** Basic *setq* Settings
 #+begin_src emacs-lisp
   (setq make-backup-files nil)
   (setq auto-save-default nil)
   (setq create-lockfiles nil)
   (setq display-line-numbers-type 'relative)
 
-  (setq org-startup-folded t)
   (setq desktop-path '("~/.emacs.d/"))
   (setq desktop-dirname "~/.emacs.d/")
   (setq desktop-base-file-name ".emacs.desktop")
   (setq desktop-load-locked-desktop t)
-  (setq inhibit-startup-message t)
   (setq ring-bell-function 'ignore)
-  (setq org-hide-emphasis-markers t)
   (setq frame-resize-pixelwise t)
-
-  (setq-default indent-tabs-mode t tab-width 4)
-  (setq-default c-basic-offset 4)
 #+end_src
-* Tree-sitter
-#+begin_src emacs-lisp
-  (setq-default typescript-ts-mode-indent-offset 4)
-  (setq-default c-ts-mode-indent-offset 4)
 
-  (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
-  (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
-  #+end_src
-* Functions
+* Advanced Settings
+** Functions
 #+begin_src emacs-lisp
   (defun shrink-left ()
     (interactive)
@@ -70,17 +73,45 @@
     (interactive)
     (org-babel-tangle)
     (compile "make -k"))
+
+  (defun org-agenda-and-todo ()
+    (interactive)
+    (org-agenda nil "n"))
+
+  (defun add-task-to-org ()
+    (interactive)
+    (org-capture nil "t"))
 #+end_src 
-* Basic Settings
+** Org *setq* Settings
 #+begin_src emacs-lisp
-  (ido-mode 1)
-  (ido-everywhere 1)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (desktop-save-mode 1)
-  (global-display-line-numbers-mode 1)
+  (setq org-hide-emphasis-markers t)
+  (setq org-startup-folded t)
+
+  (setq org-highest-priority 1)
+  (setq org-lowest-priority  9)
+  (setq org-default-priority 3)
+
+  (setq org-todo-keywords
+       '((sequence "TODO(t)" "IN-PROGRESS(p)" "POSTPONED(p!)" "|" "DONE(d)")))
+
+  (setq org-capture-templates
+      '(("t" "Todo" entry 
+         (file+headline "~/Dropbox/Private/Log.org" "Weekly/Daily Todos")
+         "*** TODO %?\n <%<%Y-%m-%d>>\n")))
+
+  (add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
 #+end_src
+** Indentations and Tree-Sitter
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil tab-width 4)
+
+  (setq-default typescript-ts-mode-indent-offset 4)
+  (setq-default c-ts-mode-indent-offset 4)
+  (setq-default c-basic-offset 4)
+  
+  (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
+  (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
+  #+end_src
 * Keybindings
 #+begin_src emacs-lisp
   (global-set-key (kbd "C-=") 'indent-region)
@@ -93,7 +124,10 @@
   (global-set-key (kbd "C-+") 'update-backend)
   (global-set-key (kbd "C-}") 'shrink-left)
   (global-set-key (kbd "C-{") 'shrink-right)
-
+  (global-set-key (kbd "M-=") 'org-agenda-and-todo) 
+  (global-set-key (kbd "M-=") 'org-agenda-and-todo)
+  (global-set-key (kbd "M-+") 'add-task-to-org)
+   
   (global-unset-key (kbd "C-x f"))
   (global-unset-key (kbd "C-x C-n"))
 #+end_src
