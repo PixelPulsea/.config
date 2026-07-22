@@ -4,7 +4,7 @@ while true; do
 	time=$(date "+%d %B %a - %I:%M %p")
 	bat=$(ls /sys/class/power_supply/)
 	
-	if [[ $bat == "" ]; then
+	if [[ $bat == "" ]]; then
 		xsetroot -name " $time "
 	else
 		bat_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
