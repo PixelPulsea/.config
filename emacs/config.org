@@ -102,7 +102,7 @@
 
   (setq org-capture-templates
       '(("t" "Todo" entry 
-         (file+headline "~/Dropbox/Private/Log.org" "Weekly/Daily Todos")
+         (file+headline "~/Dropbox/Private/Log.org" "To-do")
          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
 
   (add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
