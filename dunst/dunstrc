@@ -4,7 +4,7 @@
     timeout = 2
     font = Monospace 10
     frame_width = 0
-    separator_height = 10
+    separator_height = 0
 
 [urgency_low]
     background = "#3D3D3D"
