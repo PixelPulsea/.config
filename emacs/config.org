@@ -106,6 +106,10 @@
          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
 
   (add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
+
+  (setq org-edit-src-content-indentation 0)
+  (setq org-src-preserve-indentation t)
+  (setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
