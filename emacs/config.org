@@ -82,6 +82,12 @@
     (interactive)
     (org-capture nil "t"))
 #+end_src 
+** Customization
+#+begin_src emacs-lisp
+  (add-hook 'emacs-startup-hook
+            (lambda()
+            (org-agenda-and-todo)))
+#+end_src
 ** Org *setq* Settings
 #+begin_src emacs-lisp
   (setq org-hide-emphasis-markers t)
