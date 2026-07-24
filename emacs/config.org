@@ -88,61 +88,66 @@
             (lambda()
             (org-agenda-and-todo)))
 #+end_src
-** Org *setq* Settings
+** Org Settings
 #+begin_src emacs-lisp
-  (setq org-hide-emphasis-markers t)
-  (setq org-startup-folded t)
+(setq org-hide-emphasis-markers t)
+(setq org-startup-folded t)
 
-  (setq org-highest-priority 1)
-  (setq org-lowest-priority  9)
-  (setq org-default-priority 1)
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 1)
 
-  (setq org-todo-keywords
-       '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)")))
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)")))
 
-  (setq org-capture-templates
+(setq org-capture-templates
       '(("t" "Todo" entry 
          (file+headline "~/Dropbox/Private/Log.org" "To-do")
          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
 
-  (add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
+(add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
 
-  (setq org-edit-src-content-indentation 0)
-  (setq org-src-preserve-indentation t)
-  (setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(custom-set-faces
+ '(org-block ((t (:inherit default)))))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
-  (setq-default indent-tabs-mode nil tab-width 4)
+(setq-default indent-tabs-mode nil tab-width 4)
 
-  (setq-default typescript-ts-mode-indent-offset 4)
-  (setq-default c-ts-mode-indent-offset 4)
-  (setq-default c-basic-offset 4)
-  
-  (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
-  (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
-  #+end_src
+(setq-default typescript-ts-mode-indent-offset 4)
+(setq-default c-ts-mode-indent-offset 4)
+(setq-default c-basic-offset 4)
+
+(add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
+(add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
+#+end_src
 * Keybindings
 #+begin_src emacs-lisp
-  (global-set-key (kbd "C-=") 'indent-region)
-  (global-set-key (kbd "C-a") 'back-to-indentation)
-  (global-set-key (kbd "C-x C-b") 'ibuffer)
-  (global-set-key (kbd "C-.") 'duplicate-line)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-M-=") 'recompile)
-  (global-set-key (kbd "C-+") 'update-backend)
-  (global-set-key (kbd "C-}") 'shrink-left)
-  (global-set-key (kbd "C-{") 'shrink-right)
-  (global-set-key (kbd "M-=") 'org-agenda-and-todo) 
-  (global-set-key (kbd "M-=") 'org-agenda-and-todo)
-  (global-set-key (kbd "M-+") 'add-task-to-org)
-   
-  (global-unset-key (kbd "C-x f"))
-  (global-unset-key (kbd "C-x C-n"))
+(global-set-key (kbd "C-=") 'indent-region)
+(global-set-key (kbd "C-a") 'back-to-indentation)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key (kbd "C-.") 'duplicate-line)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-M-=") 'recompile)
+(global-set-key (kbd "C-+") 'update-backend)
+(global-set-key (kbd "C-}") 'shrink-left)
+(global-set-key (kbd "C-{") 'shrink-right)
+(global-set-key (kbd "M-=") 'org-agenda-and-todo) 
+(global-set-key (kbd "M-=") 'org-agenda-and-todo)
+(global-set-key (kbd "M-+") 'add-task-to-org)
+(global-set-key (kbd "M--") 'org-agenda-todo)
+
+(global-unset-key (kbd "C-x f"))
+(global-unset-key (kbd "C-c C-t"))
+(global-unset-key (kbd "C-x C-n"))
 #+end_src
 * Appearance
 #+begin_src emacs-lisp
-  (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
-  (load-theme 'gruber-darker t)
+(set-frame-font "CodeNewRoman Nerd Font 15" nil t)
+(load-theme 'gruber-darker t)
 #+end_src
