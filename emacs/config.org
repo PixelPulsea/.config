@@ -95,7 +95,7 @@
 
 (setq org-highest-priority 1)
 (setq org-lowest-priority  9)
-(setq org-default-priority 1)
+(setq org-default-priority 3)
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)")))
