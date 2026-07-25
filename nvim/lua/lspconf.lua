@@ -19,7 +19,7 @@ vim.lsp.config('lua_ls', {
 vim.lsp.config('jdtls', {
   cmd = { 'jdtls' },
   filetypes = { 'java' },
-  root_markers = { '.git' },
+  root_markers = { 'pom.xml', 'build.gradle', 'build.gradle.kts', 'gradlew', 'mvnw', '.git' },
 })
 
 vim.lsp.enable("clangd")

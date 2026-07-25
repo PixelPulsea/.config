@@ -1,3 +1,6 @@
+Neovim config files
+(pretty minimal I'd say)
+
 * init.lua
 #+begin_src lua :tangle init.lua
 vim.opt.number = true
@@ -15,6 +18,7 @@ require("commlspconf")
 require("plugins.telescope")
 require("plugins.harpoon")
 require("plugins.treesitter")
+require("plugins.rose-pine")
 #+end_src
 * lspconf.lua
 #+begin_src lua :tangle lua/lspconf.lua
@@ -39,7 +43,7 @@ vim.lsp.config('lua_ls', {
 vim.lsp.config('jdtls', {
   cmd = { 'jdtls' },
   filetypes = { 'java' },
-  root_markers = { '.git' },
+  root_markers = { 'pom.xml', 'build.gradle', 'build.gradle.kts', 'gradlew', 'mvnw', '.git' },
 })
 
 vim.lsp.enable("clangd")
@@ -92,6 +96,11 @@ vim.diagnostic.config({
 * treesitter.lua
 #+begin_src lua :tangle lua/plugins/treesitter.lua
 require('nvim-treesitter').setup {}
+#+end_src
+* rose-pine.lua
+#+begin_src lua :tangle lua/plugins/rose-pine.lua
+require("rose-pine").setup()
+vim.cmd("colorscheme rose-pine")
 #+end_src
 * telescope.lua
 #+begin_src lua :tangle lua/plugins/telescope.lua
