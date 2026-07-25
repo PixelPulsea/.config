@@ -1,0 +1,131 @@
+* init.lua
+#+begin_src lua :tangle init.lua
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+
+vim.g.mapleader = " ";
+vim.keymap.set('n', '<leader>j', vim.cmd.Explore, { desc = "open explore" })
+
+require("lspconf")
+require("commlspconf")
+require("plugins.telescope")
+require("plugins.harpoon")
+require("plugins.treesitter")
+#+end_src
+* lspconf.lua
+#+begin_src lua :tangle lua/lspconf.lua
+vim.lsp.config('clangd', {
+  cmd = { 'clangd' },
+  filetypes = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
+  root_markers = { '.clangd', 'compile_commands.json', 'compile_flags.txt', '.git' },
+})
+
+vim.lsp.config('ts_ls', {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
+})
+
+vim.lsp.config('lua_ls', {
+  cmd = { 'lua-language-server' },
+  filetypes = { 'lua' },
+  root_markers = { '.git' },
+})
+
+vim.lsp.config('jdtls', {
+  cmd = { 'jdtls' },
+  filetypes = { 'java' },
+  root_markers = { '.git' },
+})
+
+vim.lsp.enable("clangd")
+vim.lsp.enable("lua_ls")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("jdtls")
+#+end_src
+* commlspconf.lua
+#+begin_src lua :tangle lua/commlspconf.lua
+
+vim.lsp.config('*', {
+  root_markers = { '.git' },
+  on_attach = function(client, bufnr)
+    -- Define your buffer-local keymaps once for all LSPs
+    local opts = { buffer = bufnr }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  end,
+})
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '● ',
+    spacing = 4,
+  },
+  
+  -- Show icons in the sign column (gutter next to line numbers)
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN]  = '',
+      [vim.diagnostic.severity.HINT]  = '',
+      [vim.diagnostic.severity.INFO]  = '',
+    },
+  },
+  
+  underline = false,
+  severity_sort = true,
+
+  float = {
+    border = 'rounded',  -- Options: 'single', 'double', 'rounded', 'solid', 'shadow'
+    source = 'always',   -- Display the source of the error (e.g. clangd, pyright)
+    header = '',
+    prefix = '',
+  },
+})
+#+end_src
+* treesitter.lua
+#+begin_src lua :tangle lua/plugins/treesitter.lua
+require('nvim-treesitter').setup {}
+#+end_src
+* telescope.lua
+#+begin_src lua :tangle lua/plugins/telescope.lua
+require("telescope").setup({
+    defaults = {
+        file_ignore_patterns = { "node_modules", ".git/" },
+    },
+    pickers = {
+        theme = "dropdown",
+    }
+})
+
+local builtin = require("telescope.builtin")
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+#+end_src
+* harpoon.lua
+#+begin_src lua :tangle lua/plugins/harpoon.lua
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+vim.keymap.set("n", "<leader>5", function() harpoon:list():select(5) end)
+vim.keymap.set("n", "<leader>6", function() harpoon:list():select(6) end)
+vim.keymap.set("n", "<leader>7", function() harpoon:list():select(7) end)
+vim.keymap.set("n", "<leader>8", function() harpoon:list():select(8) end)
+vim.keymap.set("n", "<leader>9", function() harpoon:list():select(9) end)
+vim.keymap.set("n", "<leader>0", function() harpoon:list():select(0) end)
+#+end_src
