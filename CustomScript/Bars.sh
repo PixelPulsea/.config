@@ -7,9 +7,8 @@ while true; do
 	if [[ $bat == "" ]]; then
 		xsetroot -name " $time "
 	else
-		bat_percentage=$(cat /sys/class/power_supply/BAT0/capacity)
-		bat_status=$(cat /sys/class/power_supply/BAT0/status)
-		time=$(date "+%d %B %a - %I:%M %p")
+        read -r bat_percentage < /sys/class/power_supply/BAT0/capacity
+        read -r bat_status < /sys/class/power_supply/BAT0/status
 		xsetroot -name "$bat_status $bat_percentage% | $time "
 	fi
 	
