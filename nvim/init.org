@@ -19,6 +19,8 @@ require("plugins.telescope")
 require("plugins.harpoon")
 require("plugins.treesitter")
 require("plugins.rose-pine")
+require("plugins.babel")
+require("plugins.orgmode")
 #+end_src
 * lspconf.lua
 #+begin_src lua :tangle lua/lspconf.lua
@@ -96,6 +98,20 @@ vim.diagnostic.config({
 * treesitter.lua
 #+begin_src lua :tangle lua/plugins/treesitter.lua
 require('nvim-treesitter').setup {}
+#+end_src
+* orgmode.lua
+#+begin_src lua :tangle lua/plugins/orgmode.lua
+require('orgmode').setup({
+  org_agenda_files = '~/orgfiles/**/*',
+  org_default_notes_file = '~/orgfiles/refile.org',
+})
+#+end_src
+* babel.lua
+#+begin_src lua :tangle lua/plugins/babel.lua
+require("orgmode-babel").setup({
+  langs = { "python", "lua", ... },
+  load_paths = {}
+})
 #+end_src
 * rose-pine.lua
 #+begin_src lua :tangle lua/plugins/rose-pine.lua

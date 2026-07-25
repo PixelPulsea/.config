@@ -16,7 +16,6 @@
   (desktop-save-mode 1)
   (global-display-line-numbers-mode 1)
 #+end_src
-
 ** Packages
 #+begin_src emacs-lisp
   (use-package gruber-darker-theme
@@ -117,6 +116,7 @@
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil tab-width 4)
+(setq-default tab-always-indent 'complete)
 
 (setq-default typescript-ts-mode-indent-offset 4)
 (setq-default c-ts-mode-indent-offset 4)
