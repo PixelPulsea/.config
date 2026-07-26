@@ -18,29 +18,36 @@
 #+end_src
 ** Packages
 #+begin_src emacs-lisp
-  (use-package gruber-darker-theme
-    :ensure t)
+(use-package gruber-darker-theme
+  :ensure t)
 
-  (use-package smex
-    :ensure t
-    :init (smex-initialize)
-    :bind ("M-x" . smex))
+(use-package cherry-blossom-theme
+  :ensure t)
 
-  (use-package multiple-cursors
-    :ensure t)
+(use-package smex
+  :ensure t
+  :init (smex-initialize)
+  :bind ("M-x" . smex))
 
-  (use-package magit
-    :ensure t)
+(use-package multiple-cursors
+  :ensure t)
 
-  (use-package direnv
-    :ensure t
-    :config (direnv-mode))
+(use-package magit
+  :ensure t)
 
-  (use-package orderless
-    :ensure t
-    :custom
-    (completion-styles '(orderless basic))
-    (completion-category-overrides '((file (styles basic partial-completion)))))
+(use-package lua-mode
+  :ensure t
+  :interpreter "lua"
+  :hook (lua-mode . lua-ts-mode))
+
+(use-package nix-ts-mode
+  :ensure t)
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
 ** Basic *setq* Settings
 #+begin_src emacs-lisp
@@ -149,5 +156,5 @@
 * Appearance
 #+begin_src emacs-lisp
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
-(load-theme 'gruber-darker t)
+(load-theme 'cherry-blossom t)
 #+end_src

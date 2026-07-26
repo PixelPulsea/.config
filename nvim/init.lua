@@ -4,15 +4,16 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+vim.opt.completeopt = { "menu", "menuone", "noselect", "popup" }
 
 vim.g.mapleader = " ";
-vim.keymap.set('n', '<leader>j', vim.cmd.Explore, { desc = "open explore" })
+vim.keymap.set('n', '<leader>j', '<cmd>Oil<cr>', { desc = "open explore" })
 
-require("lspconf")
-require("commlspconf")
+require("lsp_configuration")
+require("lsp_defaults")
 require("plugins.telescope")
 require("plugins.harpoon")
 require("plugins.treesitter")
 require("plugins.rose-pine")
-require("plugins.babel")
 require("plugins.orgmode")
+require("plugins.oil")
