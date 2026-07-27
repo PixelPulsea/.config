@@ -115,7 +115,7 @@
 (setq org-default-priority 3)
 
 (setq org-todo-keywords
-    '((sequence "todo(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "done(d)" "FAILED(f)")))
+    '((sequence "todo(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)" "FAILED(f)" "Cancelled(c)")))
 
 (setq org-capture-templates
     '(("t" "Todo" entry 
