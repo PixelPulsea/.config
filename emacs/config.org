@@ -98,7 +98,8 @@
 
 (defun org-agenda-and-todo ()
     (interactive)
-    (org-agenda nil "n"))
+    (org-agenda nil "n")
+    (delete-other-windows))
 
 (defun add-task-to-org ()
     (interactive)
@@ -164,7 +165,6 @@
 (global-set-key (kbd "C-+") 'update-backend)
 (global-set-key (kbd "C-}") 'shrink-left)
 (global-set-key (kbd "C-{") 'shrink-right)
-(global-set-key (kbd "M-=") 'org-agenda-and-todo) 
 (global-set-key (kbd "M-=") 'org-agenda-and-todo)
 (global-set-key (kbd "M-+") 'add-task-to-org)
 (global-set-key (kbd "M--") 'org-agenda-todo)
