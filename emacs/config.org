@@ -57,7 +57,7 @@
     :config
     (add-to-list 'eglot-ignored-server-capabilities :documentOnTypeFormattingProvider)
     :hook
-    ((c++-mode . eglot-ensure)
+    ((c++-ts-mode . eglot-ensure)
         (java-mode . eglot-ensure)
         (lua-ts-mode . eglot-ensure)
         (js-mode . eglot-ensure)
@@ -145,6 +145,7 @@
 #+end_src
 ** LSP settings
 #+begin_src emacs-lisp
+(setq completion-auto-help nil)
 (with-eval-after-load 'eglot
     (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider)
     (add-to-list 'eglot-server-programs
@@ -168,7 +169,7 @@
 (global-set-key (kbd "M-+") 'add-task-to-org)
 (global-set-key (kbd "M--") 'org-agenda-todo)
 (global-set-key (kbd "C--") 'tab-switcher)
-(global-set-key (kbd "C-)") 'tab-new)
+(global-set-key (kbd "M-n") 'tab-new)
 
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-c C-t"))
@@ -176,10 +177,6 @@
 #+end_src
 * Appearance and Usability
 #+begin_src emacs-lisp
-(add-hook 'emacs-startup-hook
-    (lambda()
-        (org-agenda-and-todo)))
-
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
 (load-theme 'cherry-blossom t)
 #+end_src
