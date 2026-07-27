@@ -19,35 +19,50 @@
 ** Packages
 #+begin_src emacs-lisp
 (use-package gruber-darker-theme
-  :ensure t)
+    :ensure t)
 
 (use-package cherry-blossom-theme
-  :ensure t)
+    :ensure t)
+
+(use-package vterm
+    :ensure t)
 
 (use-package smex
-  :ensure t
-  :init (smex-initialize)
-  :bind ("M-x" . smex))
+    :ensure t
+    :init (smex-initialize)
+    :bind ("M-x" . smex))
 
 (use-package multiple-cursors
-  :ensure t)
+    :ensure t)
 
 (use-package magit
-  :ensure t)
+    :ensure t)
 
 (use-package lua-mode
-  :ensure t
-  :interpreter "lua"
-  :hook (lua-mode . lua-ts-mode))
+    :ensure t
+    :interpreter "lua"
+    :hook (lua-mode . lua-ts-mode))
 
 (use-package nix-ts-mode
-  :ensure t)
+    :ensure t)
 
 (use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package eglot
+    :ensure nil
+    :config
+    (add-to-list 'eglot-ignored-server-capabilities :documentOnTypeFormattingProvider)
+    :hook
+    ((c++-mode . eglot-ensure)
+        (java-mode . eglot-ensure)
+        (lua-ts-mode . eglot-ensure)
+        (js-mode . eglot-ensure)
+        (typescript-ts-mode . eglot-ensure)
+        (sh-mode . eglot-ensure)))
 #+end_src
 ** Basic *setq* Settings
 #+begin_src emacs-lisp
@@ -62,38 +77,33 @@
   (setq desktop-load-locked-desktop t)
   (setq ring-bell-function 'ignore)
   (setq frame-resize-pixelwise t)
+  (setq tab-bar-show nil)
 #+end_src
 
 * Advanced Settings
 ** Functions
 #+begin_src emacs-lisp
-  (defun shrink-left ()
+(defun shrink-left ()
     (interactive)
     (enlarge-window-horizontally 10))
 
-  (defun shrink-right ()
+(defun shrink-right ()
     (interactive)
     (shrink-window-horizontally 10))
 
-  (defun update-backend ()
+(defun update-backend ()
     (interactive)
     (org-babel-tangle)
     (compile "make -k"))
 
-  (defun org-agenda-and-todo ()
+(defun org-agenda-and-todo ()
     (interactive)
     (org-agenda nil "n"))
 
-  (defun add-task-to-org ()
+(defun add-task-to-org ()
     (interactive)
     (org-capture nil "t"))
 #+end_src 
-** Customization
-#+begin_src emacs-lisp
-  (add-hook 'emacs-startup-hook
-            (lambda()
-            (org-agenda-and-todo)))
-#+end_src
 ** Org Settings
 #+begin_src emacs-lisp
 (setq org-hide-emphasis-markers t)
@@ -104,12 +114,12 @@
 (setq org-default-priority 3)
 
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)")))
+    '((sequence "todo(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "done(d)" "FAILED(f)")))
 
 (setq org-capture-templates
-      '(("t" "Todo" entry 
-         (file+headline "~/Dropbox/Private/Log.org" "To-do")
-         "*** TODO %?\n <%<%Y-%m-%d>>\n")))
+    '(("t" "Todo" entry 
+          (file+headline "~/Dropbox/Private/Log.org" "To-do")
+          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
 
 (add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
 
@@ -118,7 +128,7 @@
 (setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
 
 (custom-set-faces
- '(org-block ((t (:inherit default)))))
+    '(org-block ((t (:inherit default)))))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
@@ -128,9 +138,18 @@
 (setq-default typescript-ts-mode-indent-offset 4)
 (setq-default c-ts-mode-indent-offset 4)
 (setq-default c-basic-offset 4)
+(setq-default lisp-indent-offset 4)
 
 (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
 (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
+#+end_src
+** LSP settings
+#+begin_src emacs-lisp
+(with-eval-after-load 'eglot
+    (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider)
+    (add-to-list 'eglot-server-programs
+        '((c-mode c++-mode c-ts-mode c++-ts-mode)
+             . ("clangd" "--header-insertion=never"))))
 #+end_src
 * Keybindings
 #+begin_src emacs-lisp
@@ -148,13 +167,19 @@
 (global-set-key (kbd "M-=") 'org-agenda-and-todo)
 (global-set-key (kbd "M-+") 'add-task-to-org)
 (global-set-key (kbd "M--") 'org-agenda-todo)
+(global-set-key (kbd "C--") 'tab-switcher)
+(global-set-key (kbd "C-)") 'tab-new)
 
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-c C-t"))
 (global-unset-key (kbd "C-x C-n"))
 #+end_src
-* Appearance
+* Appearance and Usability
 #+begin_src emacs-lisp
+(add-hook 'emacs-startup-hook
+    (lambda()
+        (org-agenda-and-todo)))
+
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
 (load-theme 'cherry-blossom t)
 #+end_src
