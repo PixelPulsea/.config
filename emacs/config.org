@@ -57,7 +57,7 @@
     :config
     (add-to-list 'eglot-ignored-server-capabilities :documentOnTypeFormattingProvider)
     :hook
-    ((c++-ts-mode . eglot-ensure)
+    ((c++-mode . eglot-ensure)
         (java-mode . eglot-ensure)
         (lua-ts-mode . eglot-ensure)
         (js-mode . eglot-ensure)
