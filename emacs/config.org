@@ -43,7 +43,7 @@
     :interpreter "lua"
     :hook (lua-mode . lua-ts-mode))
 
-(use-package nix-ts-mode
+(use-package nix-mode
     :ensure t)
 
 (use-package orderless
