@@ -58,6 +58,8 @@
     (add-to-list 'eglot-ignored-server-capabilities :documentOnTypeFormattingProvider)
     :hook
     ((c++-mode . eglot-ensure)
+        (c-mode . eglot-ensure)
+        (c++-ts-mode . eglot-ensure)
         (java-mode . eglot-ensure)
         (lua-ts-mode . eglot-ensure)
         (js-mode . eglot-ensure)
@@ -115,7 +117,7 @@
 (setq org-default-priority 3)
 
 (setq org-todo-keywords
-    '((sequence "todo(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)" "FAILED(f)" "Cancelled(c)")))
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "|" "DONE(d)" "FAILED(f)" "Cancelled(c)")))
 
 (setq org-capture-templates
     '(("t" "Todo" entry 
