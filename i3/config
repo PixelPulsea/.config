@@ -144,3 +144,5 @@ bar {
 			   separator #ffffff
 		}
 }
+
+focus_follows_mouse no
