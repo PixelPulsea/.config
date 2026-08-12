@@ -124,7 +124,7 @@
 (global-set-key (kbd "C-}") 'shrink-left)
 (global-set-key (kbd "C-{") 'shrink-right)
 (global-set-key (kbd "C--") 'tab-switch)
-(global-set-key (kbd "C-x r") 'tab-rename)
+(global-set-key (kbd "C-x C-r") 'tab-rename)
 (global-set-key (kbd "M-n") 'new-tab)
 
 (global-unset-key (kbd "C-x f"))
