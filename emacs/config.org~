@@ -1,0 +1,110 @@
+*This is my Emacs Settings*
+/everything is neatly organized/
+
+* Basic Settings
+** Defaults
+#+begin_src emacs-lisp
+  (package-initialize)
+  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
+  (desktop-save-mode 1)
+  (global-display-line-numbers-mode 1)
+#+end_src
+** Packages
+#+begin_src emacs-lisp
+  (use-package cherry-blossom-theme
+      :ensure t)
+
+  (use-package vterm
+      :ensure t)
+
+  (use-package smex
+      :ensure t
+      :init (smex-initialize)
+      :bind ("M-x" . smex))
+
+  (use-package multiple-cursors
+      :ensure t)
+
+  (use-package magit
+      :ensure t)
+
+  (use-package lua-mode
+      :ensure t
+      :interpreter "lua"
+      :hook (lua-mode . lua-ts-mode))
+
+  (use-package nix-mode
+      :ensure t)
+
+  (use-package orderless
+      :ensure t
+      :custom
+      (completion-styles '(orderless basic))
+      (completion-category-overrides '((file (styles basic partial-completion)))))
+#+end_src
+** Basic *setq* Settings
+** *Org* Settings
+#+begin_src emacs-lisp
+  
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(custom-set-faces
+    '(org-block ((t (:inherit default)))))
+#+end_src
+* Advanced Settings
+** Functions
+#+begin_src emacs-lisp
+  (defun shrink-left ()
+      (interactive)
+      (enlarge-window-horizontally 10))
+
+  (defun shrink-right ()
+      (interactive)
+      (shrink-window-horizontally 10))
+#+end_src 
+** Indentations and Tree-Sitter
+#+begin_src emacs-lisp
+  (setq-default indent-tabs-mode nil tab-width 4)
+  (setq-default tab-always-indent 'complete)
+
+  (setq-default typescript-ts-mode-indent-offset 4)
+  (setq-default c-ts-mode-indent-offset 4)
+  (setq-default c-basic-offset 4)
+  (setq-default lisp-indent-offset 4)
+
+  (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
+  (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
+#+end_src
+* Keybindings
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-=") 'indent-region)
+  (global-set-key (kbd "C-a") 'back-to-indentation)
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  (global-set-key (kbd "C-.") 'duplicate-line)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-M-=") 'recompile)
+  (global-set-key (kbd "C-}") 'shrink-left)
+  (global-set-key (kbd "C-{") 'shrink-right)
+  (global-set-key (kbd "C--") 'tab-switcher)
+  (global-set-key (kbd "M-n") 'tab-new)
+
+
+  (global-unset-key (kbd "C-x f"))
+  (global-unset-key (kbd "C-c C-t"))
+  (global-unset-key (kbd "C-x C-n"))
+#+end_src
+* Appearance and Usability
+#+begin_src emacs-lisp
+(set-frame-font "CodeNewRoman Nerd Font 15" nil t)
+(load-theme 'cherry-blossom t)
+#+end_src
