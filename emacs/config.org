@@ -22,9 +22,6 @@
 (use-package cherry-blossom-theme
     :ensure t)
 
-(use-package vterm
-    :ensure t)
-
 (use-package multiple-cursors
     :ensure t)
 
@@ -77,6 +74,13 @@
 (setq org-edit-src-content-indentation 0)
 (setq org-src-preserve-indentation t)
 (setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 3)
+
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
 
 (custom-set-faces
     '(org-block ((t (:inherit default)))))
