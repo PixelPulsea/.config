@@ -13,13 +13,14 @@
 (tab-bar-mode -1)
 (scroll-bar-mode -1)
 (desktop-save-mode 1)
+(electric-pair-mode 1)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (global-visual-line-mode 1)
 #+end_src
 ** Packages
 #+begin_src emacs-lisp
-(use-package cherry-blossom-theme
+(use-package gruber-darker-theme
     :ensure t)
 
 (use-package multiple-cursors
@@ -129,7 +130,8 @@
 (global-set-key (kbd "C-{") 'shrink-right)
 (global-set-key (kbd "C--") 'tab-switch)
 (global-set-key (kbd "C-x C-r") 'tab-rename)
-(global-set-key (kbd "M-n") 'new-tab)
+(global-set-key (kbd "M-+") 'new-tab)
+(global-set-key (kbd "C-x j") 'tab-switcher)
 
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-c C-t"))
@@ -137,7 +139,7 @@
 #+end_src
 * Appearance and Usability
 #+begin_src emacs-lisp
-(set-face-background 'hl-line "#212121") 
+(setq whitespace-style '(face tabs spaces trailing space-before-tab))
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
-(load-theme 'cherry-blossom t)
+(load-theme 'gruber-darker t)
 #+end_src
