@@ -10,10 +10,10 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(tab-bar-mode -1)
 (scroll-bar-mode -1)
-(desktop-save-mode 1)
+(desktop-save-mode -1)
 (electric-pair-mode 1)
+(global-whitespace-mode 1)
 (global-display-line-numbers-mode 1)
 (global-hl-line-mode 1)
 (global-visual-line-mode 1)
@@ -62,7 +62,7 @@
 (setq inhibit-startup-message t)
 (setq ring-bell-function 'ignore)
 (setq dired-listing-switches "-al --group-directories-first")
-;(setq completion-styles '(substring flex basic))
+(setq whitespace-style '(face tabs spaces trailing space-before-tab))
 
 (setq-default indent-tabs-mode t tab-width 4)
 (setq-default c-basic-offset 4)
@@ -81,7 +81,7 @@
 (setq org-default-priority 3)
 
 (setq org-todo-keywords
-    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+    '(sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
 
 (custom-set-faces
     '(org-block ((t (:inherit default)))))
@@ -96,13 +96,7 @@
 (defun shrink-right ()
     (interactive)
     (shrink-window-horizontally 10))
-
-(defun new-tab ()
-    (interactive)
-    (tab-new)
-    (tab-bar-mode -1)
-    (message "Added a new tab"))
-#+end_src 
+#+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode nil tab-width 4)
@@ -128,10 +122,6 @@
 (global-set-key (kbd "C-+") 'compile)
 (global-set-key (kbd "C-}") 'shrink-left)
 (global-set-key (kbd "C-{") 'shrink-right)
-(global-set-key (kbd "C--") 'tab-switch)
-(global-set-key (kbd "C-x C-r") 'tab-rename)
-(global-set-key (kbd "M-+") 'new-tab)
-(global-set-key (kbd "C-x j") 'tab-switcher)
 
 (global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-c C-t"))
@@ -139,7 +129,9 @@
 #+end_src
 * Appearance and Usability
 #+begin_src emacs-lisp
-(setq whitespace-style '(face tabs spaces trailing space-before-tab))
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
 (load-theme 'gruber-darker t)
+#+end_src
+* Testing lisp
+#+begin_src emacs-lisp
 #+end_src
