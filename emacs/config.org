@@ -140,6 +140,9 @@
 
 (global-unset-key (kbd "C-c C-t"))
 (global-unset-key (kbd "C-x C-n"))
+(global-unset-key (kbd "C-x C-l"))
+(global-unset-key (kbd "C-x ;"))
+(global-unset-key (kbd "C-x l"))
 #+end_src
 * Appearance and Usability
 #+begin_src emacs-lisp
@@ -148,4 +151,7 @@
 #+end_src
 * Testing lisp
 #+begin_src emacs-lisp
+(defun hello_world! ()
+    (interactive)
+    (message "Hello world!"))
 #+end_src
