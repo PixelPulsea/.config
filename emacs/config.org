@@ -66,6 +66,7 @@
 (setq dired-listing-switches "-al --group-directories-first")
 (setq whitespace-line-column 160)
 (setq whitespace-style '(face spaces space-mark))
+(setq insert-pair-alist '((40 41) (91 93) (123 125) (34 34) (39 39) (96 39)))
 
 (setq-default indent-tabs-mode t tab-width 4)
 (setq-default c-basic-offset 4)
