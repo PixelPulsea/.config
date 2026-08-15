@@ -15,7 +15,6 @@
 (electric-pair-mode 1)
 (global-whitespace-mode 1)
 (global-display-line-numbers-mode 1)
-(global-hl-line-mode 1)
 (global-visual-line-mode 1)
 #+end_src
 ** Packages
@@ -27,6 +26,9 @@
     :ensure t)
 
 (use-package magit
+    :ensure t)
+
+(use-package consult
     :ensure t)
 
 (use-package lua-mode
@@ -62,10 +64,16 @@
 (setq inhibit-startup-message t)
 (setq ring-bell-function 'ignore)
 (setq dired-listing-switches "-al --group-directories-first")
-(setq whitespace-style '(face tabs spaces trailing space-before-tab))
+(setq whitespace-line-column 160)
+(setq whitespace-style '(face spaces space-mark))
 
 (setq-default indent-tabs-mode t tab-width 4)
 (setq-default c-basic-offset 4)
+
+(setq consult-project-root-function (lambda (&rest _) "~"))
+(setq consult-fd-args
+      (let ((cmd (if (executable-find "fdfind" 'remote) "fdfind" "fd")))
+        (concat cmd " --color=never --full-path --absolute-path --hidden --no-ignore")))
 #+end_src
 ** *Org* Settings
 #+begin_src emacs-lisp
@@ -81,7 +89,7 @@
 (setq org-default-priority 3)
 
 (setq org-todo-keywords
-    '(sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
 
 (custom-set-faces
     '(org-block ((t (:inherit default)))))
@@ -96,6 +104,11 @@
 (defun shrink-right ()
     (interactive)
     (shrink-window-horizontally 10))
+
+(defun consult-fd-everywhere ()
+    (interactive)
+    (let ((default-directory "~"))
+        (consult-fd)))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
@@ -120,10 +133,11 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-M-=") 'recompile)
 (global-set-key (kbd "C-+") 'compile)
+(global-set-key (kbd "C-x C-f") 'consult-fd-everywhere)
+(global-set-key (kbd "C-x f") 'find-file)
 (global-set-key (kbd "C-}") 'shrink-left)
 (global-set-key (kbd "C-{") 'shrink-right)
 
-(global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-c C-t"))
 (global-unset-key (kbd "C-x C-n"))
 #+end_src
