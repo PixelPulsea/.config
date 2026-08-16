@@ -1,7 +1,7 @@
 set $mod Mod4
 
 # font for window titles
-font pango:monospace 8
+font pango:CodeNewRoman Nerd Font 10
 
 # autostart
 exec --no-startup-id dex --autostart --environment i3
