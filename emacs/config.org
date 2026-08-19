@@ -1,7 +1,7 @@
 *This is my Emacs Settings*
 /everything is neatly organized/
 
-* Basic Settings
+* Settings
 ** Defaults
 #+begin_src emacs-lisp
 (package-initialize)
@@ -50,7 +50,7 @@
     (completion-category-defaults nil)
     (completion-category-overrides '((file (styles basic partial-completion)))))
 #+end_src
-** *Setq* Settings
+** *Setq*
 #+begin_src emacs-lisp
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -68,15 +68,12 @@
 (setq whitespace-style '(face spaces space-mark))
 (setq insert-pair-alist '((40 41) (91 93) (123 125) (34 34) (39 39) (96 39)))
 
-(setq-default indent-tabs-mode t tab-width 4)
-(setq-default c-basic-offset 4)
-
 (setq consult-project-root-function (lambda (&rest _) "~"))
 (setq consult-fd-args
       (let ((cmd (if (executable-find "fdfind" 'remote) "fdfind" "fd")))
         (concat cmd " --color=never --full-path --absolute-path --hidden --no-ignore")))
 #+end_src
-** *Org* Settings
+** *Org*
 #+begin_src emacs-lisp
 (setq org-startup-folded t)
 (setq org-hide-emphasis-markers t)
@@ -95,7 +92,6 @@
 (custom-set-faces
     '(org-block ((t (:inherit default)))))
 #+end_src
-* Advanced Settings
 ** Functions
 #+begin_src emacs-lisp
 (defun shrink-left ()
@@ -110,9 +106,29 @@
     (interactive)
     (let ((default-directory "~"))
         (consult-fd)))
+
+(defun move-line-up()
+    (interactive)
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (previous-line)
+    (open-line 1)
+    (yank))
+
+(defun move-line-down()
+    (interactive)
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (next-line)
+    (open-line 1)
+    (yank))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
+(setq-default indent-tabs-mode t tab-width 4)
+(setq-default c-basic-offset 4)
 (setq-default indent-tabs-mode nil tab-width 4)
 (setq-default tab-always-indent 'complete)
 
@@ -138,6 +154,8 @@
 (global-set-key (kbd "C-x f") 'find-file)
 (global-set-key (kbd "C-}") 'shrink-left)
 (global-set-key (kbd "C-{") 'shrink-right)
+(global-set-key (kbd "M-p") 'move-line-up)
+(global-set-key (kbd "M-n") 'move-line-down)
 
 (global-unset-key (kbd "C-c C-t"))
 (global-unset-key (kbd "C-x C-n"))
@@ -152,7 +170,7 @@
 #+end_src
 * Testing lisp
 #+begin_src emacs-lisp
-(defun hello_world! ()
+(defun hello_world! () ;;this is just an example :P
     (interactive)
     (message "Hello world!"))
 #+end_src
