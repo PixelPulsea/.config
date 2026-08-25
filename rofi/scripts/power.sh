@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Options
-options=" Shutdown\n Reboot\n Sleep\n Logout\n Lock"
+options=" Shutdown\n Reboot\n Sleep\n Logout\n"
 
 # Show Rofi menu
 chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" -theme ~/.config/rofi/Power.rasi)
@@ -9,10 +9,10 @@ chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" -theme ~/.config/ro
 # Execute choice
 case "$chosen" in
     " Shutdown")
-        systemctl poweroff
+        sudo shutdown
         ;;
     " Reboot")
-        systemctl reboot
+        sudo reboot
         ;;
     " Sleep")
         systemctl suspend
@@ -20,13 +20,6 @@ case "$chosen" in
     " Logout")
         # Replace 'your_session' with your DE/WM logout command
 		pkill dwm
-        # openbox --exit # for Openbox
-        # i3-msg exit # for i3
-        ;;
-    " Lock")
-        # Replace with your lock command
-        i3lock
-        # betterlockscreen -l dim
         ;;
 esac
 
