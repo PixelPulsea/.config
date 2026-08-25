@@ -1,0 +1,103 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /home/achka/.config/emacs/config.org
+
+
+* Org Settings
+:PROPERTIES:
+:ARCHIVE_TIME: 2026-08-08 Sat 16:28
+:ARCHIVE_FILE: ~/.config/emacs/config.org
+:ARCHIVE_OLPATH: Advanced Settings
+:ARCHIVE_CATEGORY: config
+:END:
+#+begin_src emacs-lisp
+(setq org-hide-emphasis-markers t)
+(setq org-startup-folded t)
+
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 3)
+
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+
+(setq org-capture-templates
+    '(("t" "Todo" entry 
+          (file+headline "~/Dropbox/Private/Log.org" "To-do")
+          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
+
+(add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
+
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(custom-set-faces
+    '(org-block ((t (:inherit default)))))
+#+end_src
+
+* Org Settings
+:PROPERTIES:
+:ARCHIVE_TIME: 2026-08-08 Sat 16:28
+:ARCHIVE_FILE: ~/.config/emacs/config.org
+:ARCHIVE_OLPATH: Advanced Settings
+:ARCHIVE_CATEGORY: config
+:END:
+#+begin_src emacs-lisp
+(setq org-hide-emphasis-markers t)
+(setq org-startup-folded t)
+
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 3)
+
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+
+(setq org-capture-templates
+    '(("t" "Todo" entry 
+          (file+headline "~/Dropbox/Private/Log.org" "To-do")
+          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
+
+(add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
+
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(custom-set-faces
+    '(org-block ((t (:inherit default)))))
+#+end_src
+
+* Org Settings
+:PROPERTIES:
+:ARCHIVE_TIME: 2026-08-08 Sat 16:30
+:ARCHIVE_FILE: ~/.config/emacs/config.org
+:ARCHIVE_OLPATH: Advanced Settings
+:ARCHIVE_CATEGORY: config
+:END:
+#+begin_src emacs-lisp
+
+
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 3)
+
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+
+(setq org-capture-templates
+    '(("t" "Todo" entry 
+          (file+headline "~/Dropbox/Private/Log.org" "To-do")
+          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
+
+(add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
+
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(custom-set-faces
+    '(org-block ((t (:inherit default)))))
+#+end_src

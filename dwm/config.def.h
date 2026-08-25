@@ -7,6 +7,7 @@ static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows sel
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int focusonwheel       = 0;        /* 0 allows the user to scroll window without changing focus */
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -29,7 +30,7 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "Media" };
 
 static const Rule rules[] = {
 	/* class                                 instance    title       tags mask     isfloating   monitor */
-	{ "org.nicotine_plus.Nicotine",          NULL,       NULL,       1 << 7,           0,           -1 },
+	{ "org.nicotine_plus.Nicotine",           NULL,       NULL,       1 << 7,           0,           -1 },
 	{ "steam",                               NULL,       NULL,       1 << 6,           0,           -1 },
 	{ "copyq",                               NULL,       NULL,       0,                1,           -1 },
 };
@@ -43,15 +44,15 @@ static const int refreshrate = 60;  /* refresh rate (per second) for client move
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "| master",      tile }, 
 	{ "| stacked",      monocle },
+	{ "| master",      tile }, 
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
 #include <X11/XF86keysym.h>
-#define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+#define TAGKEYS(KEY,TAG)                                                \
+ 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
@@ -71,13 +72,12 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_c,      killclient,     {0} },
-	{ MODKEY|ShiftMask,             XK_w,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_w,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_t,      togglefloating, {0} },
 	
 	//Custom binds & Function key binds
-	{ MODKEY,                  XK_b,         spawn,    SHCMD("brave") },
-	{ MODKEY,                  XK_e,         spawn,    SHCMD("thunar") },
+	{ MODKEY,                  XK_b,         spawn,    SHCMD("firefox") },
 	{ MODKEY,                  XK_v,         spawn,    SHCMD("copyq show") },
 	{ MODKEY|ShiftMask,        XK_s,         spawn,    SHCMD("flameshot gui") },
 	{ MODKEY|ShiftMask,        XK_l,         spawn,    SHCMD("i3lock") },

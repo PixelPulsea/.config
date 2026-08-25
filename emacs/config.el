@@ -2,45 +2,128 @@
 (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(desktop-save-mode -1)
+(electric-pair-mode 1)
+(global-whitespace-mode 1)
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode 1)
+
 (use-package gruber-darker-theme
-  :ensure t)
+    :ensure t)
 
 (use-package multiple-cursors
-  :ensure t)
+    :ensure t)
 
 (use-package magit
-  :ensure t)
+    :ensure t)
+
+(use-package consult
+    :ensure t)
+
+(use-package lua-mode
+    :ensure t
+    :interpreter "lua"
+    :hook (lua-mode . lua-ts-mode))
+
+(use-package vertico
+    :ensure t
+    :init (vertico-mode))
+
+(use-package nix-mode
+    :ensure t)
 
 (use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-defaults nil)
+    (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (setq create-lockfiles nil)
 (setq display-line-numbers-type 'relative)
 
-(setq org-startup-folded t)
 (setq desktop-path '("~/.emacs.d/"))
 (setq desktop-dirname "~/.emacs.d/")
 (setq desktop-base-file-name ".emacs.desktop")
 (setq desktop-load-locked-desktop t)
+(setq frame-resize-pixelwise t)
 (setq inhibit-startup-message t)
 (setq ring-bell-function 'ignore)
+(setq dired-listing-switches "-al --group-directories-first")
+(setq whitespace-line-column 160)
+(setq whitespace-style '(face spaces space-mark))
+(setq insert-pair-alist '((40 41) (91 93) (123 125) (34 34) (39 39) (96 39)))
+
+(setq consult-project-root-function (lambda (&rest _) "~"))
+(setq consult-fd-args
+      (let ((cmd (if (executable-find "fdfind" 'remote) "fdfind" "fd")))
+        (concat cmd " --color=never --full-path --absolute-path --hidden --no-ignore")))
+
+(setq org-startup-folded t)
 (setq org-hide-emphasis-markers t)
-(setq frame-resize-pixelwise t)
+
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 3)
+
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+
+(custom-set-faces
+    '(org-block ((t (:inherit default)))))
+
+(defun shrink-left ()
+    (interactive)
+    (enlarge-window-horizontally 10))
+
+(defun shrink-right ()
+    (interactive)
+    (shrink-window-horizontally 10))
+
+(defun consult-fd-everywhere ()
+    (interactive)
+    (let ((default-directory "~"))
+        (consult-fd)))
+
+(defun move-line-up()
+    (interactive)
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (previous-line)
+    (open-line 1)
+    (yank))
+
+(defun move-line-down()
+    (interactive)
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (next-line)
+    (open-line 1)
+    (yank))
 
 (setq-default indent-tabs-mode t tab-width 4)
 (setq-default c-basic-offset 4)
+(setq-default indent-tabs-mode nil tab-width 4)
+(setq-default tab-always-indent 'complete)
 
-(ido-mode 1)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-(desktop-save-mode 1)
-(global-display-line-numbers-mode 1)
+(setq-default typescript-ts-mode-indent-offset 4)
+(setq-default c-ts-mode-indent-offset 4)
+(setq-default c-basic-offset 4)
+(setq-default lisp-indent-offset 4)
+
+(add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
+(add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
 
 (global-set-key (kbd "C-=") 'indent-region)
 (global-set-key (kbd "C-a") 'back-to-indentation)
@@ -49,8 +132,23 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-M-=") 'recompile)
-(global-unset-key (kbd "C-x f"))
-(global-unset-key (kbd "C-x C-n"))
+(global-set-key (kbd "C-+") 'compile)
+(global-set-key (kbd "C-x C-f") 'consult-fd-everywhere)
+(global-set-key (kbd "C-x f") 'find-file)
+(global-set-key (kbd "C-}") 'shrink-left)
+(global-set-key (kbd "C-{") 'shrink-right)
+(global-set-key (kbd "M-p") 'move-line-up)
+(global-set-key (kbd "M-n") 'move-line-down)
 
-(set-frame-font "Iosevka Nerd Font 22" nil t)
+(global-unset-key (kbd "C-c C-t"))
+(global-unset-key (kbd "C-x C-n"))
+(global-unset-key (kbd "C-x C-l"))
+(global-unset-key (kbd "C-x ;"))
+(global-unset-key (kbd "C-x l"))
+
+(set-frame-font "CodeNewRoman Nerd Font 15" nil t)
 (load-theme 'gruber-darker t)
+
+(defun hello_world! () ;;this is just an example :P
+    (interactive)
+    (message "Hello world!"))

@@ -1,36 +1,26 @@
 *This is my Emacs Settings*
 /everything is neatly organized/
 
-* Basic Settings
+* Settings
 ** Defaults
 #+begin_src emacs-lisp
-  (package-initialize)
-  (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  
-  (ido-mode 1)
-  (ido-everywhere 1)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (desktop-save-mode 1)
-  (global-display-line-numbers-mode 1)
+(package-initialize)
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(desktop-save-mode -1)
+(electric-pair-mode 1)
+(global-whitespace-mode 1)
+(global-display-line-numbers-mode 1)
+(global-visual-line-mode 1)
 #+end_src
 ** Packages
 #+begin_src emacs-lisp
 (use-package gruber-darker-theme
     :ensure t)
-
-(use-package cherry-blossom-theme
-    :ensure t)
-
-(use-package vterm
-    :ensure t)
-
-(use-package smex
-    :ensure t
-    :init (smex-initialize)
-    :bind ("M-x" . smex))
 
 (use-package multiple-cursors
     :ensure t)
@@ -38,10 +28,17 @@
 (use-package magit
     :ensure t)
 
+(use-package consult
+    :ensure t)
+
 (use-package lua-mode
     :ensure t
     :interpreter "lua"
     :hook (lua-mode . lua-ts-mode))
+
+(use-package vertico
+    :ensure t
+    :init (vertico-mode))
 
 (use-package nix-mode
     :ensure t)
@@ -50,39 +47,52 @@
     :ensure t
     :custom
     (completion-styles '(orderless basic))
+    (completion-category-defaults nil)
     (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package eglot
-    :ensure nil
-    :config
-    (add-to-list 'eglot-ignored-server-capabilities :documentOnTypeFormattingProvider)
-    :hook
-    ((c++-mode . eglot-ensure)
-        (c-mode . eglot-ensure)
-        (c++-ts-mode . eglot-ensure)
-        (java-mode . eglot-ensure)
-        (lua-ts-mode . eglot-ensure)
-        (js-mode . eglot-ensure)
-        (typescript-ts-mode . eglot-ensure)
-        (sh-mode . eglot-ensure)))
 #+end_src
-** Basic *setq* Settings
+** *Setq*
 #+begin_src emacs-lisp
-  (setq make-backup-files nil)
-  (setq auto-save-default nil)
-  (setq create-lockfiles nil)
-  (setq display-line-numbers-type 'relative)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+(setq display-line-numbers-type 'relative)
 
-  (setq desktop-path '("~/.emacs.d/"))
-  (setq desktop-dirname "~/.emacs.d/")
-  (setq desktop-base-file-name ".emacs.desktop")
-  (setq desktop-load-locked-desktop t)
-  (setq ring-bell-function 'ignore)
-  (setq frame-resize-pixelwise t)
-  (setq tab-bar-show nil)
+(setq desktop-path '("~/.emacs.d/"))
+(setq desktop-dirname "~/.emacs.d/")
+(setq desktop-base-file-name ".emacs.desktop")
+(setq desktop-load-locked-desktop t)
+(setq frame-resize-pixelwise t)
+(setq inhibit-startup-message t)
+(setq ring-bell-function 'ignore)
+(setq dired-listing-switches "-al --group-directories-first")
+(setq whitespace-line-column 160)
+(setq whitespace-style '(face spaces space-mark))
+(setq insert-pair-alist '((40 41) (91 93) (123 125) (34 34) (39 39) (96 39)))
+
+(setq consult-project-root-function (lambda (&rest _) "~"))
+(setq consult-fd-args
+      (let ((cmd (if (executable-find "fdfind" 'remote) "fdfind" "fd")))
+        (concat cmd " --color=never --full-path --absolute-path --hidden --no-ignore")))
 #+end_src
+** *Org*
+#+begin_src emacs-lisp
+(setq org-startup-folded t)
+(setq org-hide-emphasis-markers t)
 
-* Advanced Settings
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+
+(setq org-highest-priority 1)
+(setq org-lowest-priority  9)
+(setq org-default-priority 3)
+
+(setq org-todo-keywords
+    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
+
+(custom-set-faces
+    '(org-block ((t (:inherit default)))))
+#+end_src
 ** Functions
 #+begin_src emacs-lisp
 (defun shrink-left ()
@@ -93,48 +103,33 @@
     (interactive)
     (shrink-window-horizontally 10))
 
-(defun update-backend ()
+(defun consult-fd-everywhere ()
     (interactive)
-    (org-babel-tangle)
-    (compile "make -k"))
+    (let ((default-directory "~"))
+        (consult-fd)))
 
-(defun org-agenda-and-todo ()
+(defun move-line-up()
     (interactive)
-    (org-agenda nil "n")
-    (delete-other-windows))
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (previous-line)
+    (open-line 1)
+    (yank))
 
-(defun add-task-to-org ()
+(defun move-line-down()
     (interactive)
-    (org-capture nil "t"))
-#+end_src 
-** Org Settings
-#+begin_src emacs-lisp
-(setq org-hide-emphasis-markers t)
-(setq org-startup-folded t)
-
-(setq org-highest-priority 1)
-(setq org-lowest-priority  9)
-(setq org-default-priority 3)
-
-(setq org-todo-keywords
-    '((sequence "TODO(t)" "IN-PROGRESS(i)" "POSTPONED(p!)" "FAILED(f)" "Cancelled(c)" "|" "DONE(d)")))
-
-(setq org-capture-templates
-    '(("t" "Todo" entry 
-          (file+headline "~/Dropbox/Private/Log.org" "To-do")
-          "*** TODO %?\n <%<%Y-%m-%d>>\n")))
-
-(add-to-list 'org-agenda-files "~/Dropbox/Private/Log.org")
-
-(setq org-edit-src-content-indentation 0)
-(setq org-src-preserve-indentation t)
-(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
-
-(custom-set-faces
-    '(org-block ((t (:inherit default)))))
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (next-line)
+    (open-line 1)
+    (yank))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
+(setq-default indent-tabs-mode t tab-width 4)
+(setq-default c-basic-offset 4)
 (setq-default indent-tabs-mode nil tab-width 4)
 (setq-default tab-always-indent 'complete)
 
@@ -146,15 +141,6 @@
 (add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
 (add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
 #+end_src
-** LSP settings
-#+begin_src emacs-lisp
-(setq completion-auto-help nil)
-(with-eval-after-load 'eglot
-    (add-to-list 'eglot-ignored-server-capabilities :inlayHintProvider)
-    (add-to-list 'eglot-server-programs
-        '((c-mode c++-mode c-ts-mode c++-ts-mode)
-             . ("clangd" "--header-insertion=never"))))
-#+end_src
 * Keybindings
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-=") 'indent-region)
@@ -164,21 +150,28 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-M-=") 'recompile)
-(global-set-key (kbd "C-+") 'update-backend)
+(global-set-key (kbd "C-+") 'compile)
+(global-set-key (kbd "C-x C-f") 'consult-fd-everywhere)
+(global-set-key (kbd "C-x f") 'find-file)
 (global-set-key (kbd "C-}") 'shrink-left)
 (global-set-key (kbd "C-{") 'shrink-right)
-(global-set-key (kbd "M-=") 'org-agenda-and-todo)
-(global-set-key (kbd "M-+") 'add-task-to-org)
-(global-set-key (kbd "M--") 'org-agenda-todo)
-(global-set-key (kbd "C--") 'tab-switcher)
-(global-set-key (kbd "M-n") 'tab-new)
+(global-set-key (kbd "M-p") 'move-line-up)
+(global-set-key (kbd "M-n") 'move-line-down)
 
-(global-unset-key (kbd "C-x f"))
 (global-unset-key (kbd "C-c C-t"))
 (global-unset-key (kbd "C-x C-n"))
+(global-unset-key (kbd "C-x C-l"))
+(global-unset-key (kbd "C-x ;"))
+(global-unset-key (kbd "C-x l"))
 #+end_src
 * Appearance and Usability
 #+begin_src emacs-lisp
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
-(load-theme 'cherry-blossom t)
+(load-theme 'gruber-darker t)
+#+end_src
+* Testing lisp
+#+begin_src emacs-lisp
+(defun hello_world! () ;;this is just an example :P
+    (interactive)
+    (message "Hello world!"))
 #+end_src
