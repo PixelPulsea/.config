@@ -5,7 +5,8 @@ font pango:CodeNewRoman Nerd Font 10
 
 # autostart
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id feh --bg-fill ~/Pictures/europa.jpg
+exec --no-startup-id feh --bg-fill ~/Pictures/Abstract.png
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id flameshot
 exec --no-startup-id copyq
 exec --no-startup-id xrandr --rate 100.00
@@ -58,6 +59,7 @@ bindsym $mod+t floating toggle
 # custom settings
 bindsym $mod+v exec copyq show
 bindsym $mod+b exec firefox
+bindsym $mod+e exec thunar
 bindsym $mod+Shift+S exec flameshot gui
 bindsym $mod+Shift+e exec rofimoji
 bindsym $mod+Shift+l exec i3lock
@@ -118,7 +120,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # exit i3 (logs you out of your X session)
-bindsym $mod+Ctrl+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Exit i3' 'i3-msg exit' -B 'Restart' 'sudo reboot' -B 'Shutdown' 'sudo shutdown now'"
+bindsym $mod+Ctrl+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Exit i3' 'i3-msg exit' -B 'Restart' 'sudo reboot' -B 'Poweroff' 'sudo poweroff'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
