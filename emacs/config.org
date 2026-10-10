@@ -80,7 +80,7 @@
 
 (setq org-edit-src-content-indentation 0)
 (setq org-src-preserve-indentation t)
-(setq org-src-tab-acts-natively t)(setq org-src-tab-acts-natively t)
+(setq org-src-tab-acts-natively t)
 
 (setq org-highest-priority 1)
 (setq org-lowest-priority  9)
@@ -107,22 +107,28 @@
     (let ((default-directory "~"))
         (consult-fd)))
 
-(defun move-line-up ()
+(defun move-line-up()
     (interactive)
-    (transpose-lines 1)
-    (forward-line -2))
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (previous-line)
+    (open-line 1)
+    (yank))
 
-(defun move-line-down ()
+(defun move-line-down()
     (interactive)
-    (forward-line 1)
-    (transpose-lines 1)
-    (forward-line -1))
+    (beginning-of-line)
+    (kill-line)
+    (delete-char 1)
+    (next-line)
+    (open-line 1)
+    (yank))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
 (setq-default indent-tabs-mode t tab-width 4)
 (setq-default c-basic-offset 4)
-(setq-default indent-tabs-mode nil tab-width 4)
 (setq-default tab-always-indent 'complete)
 
 (setq-default typescript-ts-mode-indent-offset 4)
@@ -130,8 +136,8 @@
 (setq-default c-basic-offset 4)
 (setq-default lisp-indent-offset 4)
 
-(add-to-list 'major-mode-remap-alist '("c++-mode" . c++-ts-mode))
-(add-to-list 'major-mode-remap-alist '("js-mode" . js-ts-mode))
+(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
+(add-to-list 'major-mode-remap-alist '(js-mode . js-ts-mode))
 #+end_src
 * Keybindings
 #+begin_src emacs-lisp
