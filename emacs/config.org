@@ -1,3 +1,4 @@
+# -*- lexical-binding: t; -*-
 *This is my Emacs Settings*
 /everything is neatly organized/
 
@@ -13,14 +14,15 @@
 (scroll-bar-mode -1)
 (desktop-save-mode -1)
 (electric-pair-mode 1)
-(global-whitespace-mode 1)
 (global-display-line-numbers-mode 1)
 (global-visual-line-mode 1)
 #+end_src
 ** Packages
 #+begin_src emacs-lisp
-(use-package gruber-darker-theme
-    :ensure t)
+(use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook))
 
 (use-package multiple-cursors
     :ensure t)
@@ -61,8 +63,8 @@
 (setq desktop-dirname "~/.emacs.d/")
 (setq desktop-base-file-name ".emacs.desktop")
 (setq desktop-load-locked-desktop t)
-(setq frame-resize-pixelwise t)
 (setq inhibit-startup-message t)
+(setq frame-resize-pixelwise t)
 (setq ring-bell-function 'ignore)
 (setq dired-listing-switches "-al --group-directories-first")
 (setq whitespace-line-column 160)
@@ -108,23 +110,16 @@
     (let ((default-directory "~"))
         (consult-fd)))
 
-(defun move-line-up()
+(defun move-line-up ()
     (interactive)
-    (beginning-of-line)
-    (kill-line)
-    (delete-char 1)
-    (previous-line)
-    (open-line 1)
-    (yank))
+    (transpose-lines 1)
+    (forward-line -2))
 
-(defun move-line-down()
+(defun move-line-down ()
     (interactive)
-    (beginning-of-line)
-    (kill-line)
-    (delete-char 1)
-    (next-line)
-    (open-line 1)
-    (yank))
+    (forward-line 1)
+    (transpose-lines 1)
+    (forward-line -1))
 #+end_src
 ** Indentations and Tree-Sitter
 #+begin_src emacs-lisp
@@ -167,7 +162,7 @@
 * Appearance and Usability
 #+begin_src emacs-lisp
 (set-frame-font "CodeNewRoman Nerd Font 15" nil t)
-(load-theme 'gruber-darker t)
+(load-theme 'tango-dark t)
 #+end_src
 * Testing lisp
 #+begin_src emacs-lisp
